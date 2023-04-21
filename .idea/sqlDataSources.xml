@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="7e844f31-f80f-4148-afbd-48dcabb57ee9" name="DDL Mapping">
+      <data-sources db="1dd970e7-d9d8-43e5-8434-56ae5d4b8217" ddl="f5829cdd-640f-4750-ac9b-0b100c248f0e" />
+      <scope>
+        <node kind="schema" qname="itp4511_db" />
+      </scope>
+    </mapping>
+  </component>
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="f5829cdd-640f-4750-ac9b-0b100c248f0e" />
+          <option name="name" value="itp4511_db@localhost (DDL)" />
+          <option name="dbmsName" value="MARIADB" />
+          <option name="urls">
+            <array>
+              <option value="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities" />
+            </array>
+          </option>
+          <option name="outLayout" value="File per object by schema.groovy" />
+        </State>
+      </list>
+    </option>
+  </component>
+</project>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/bean/Bean.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/Booking.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/BookingApprovedDetails.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/BookingFee.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/BookingRequestResponse.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/CheckOut.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/Gender.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/Member.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/Notification.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/Staff.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/StaffRole.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/Timeslot.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/User.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/UserCommonInfo.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/Venue.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/entities/VenueUsage.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/non_entties/UserType.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/data_objects/non_entties/UserTypeIdentifier.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/BookingApprovedDetailsDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/BookingDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/BookingFeeDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/BookingRequestResponseDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/CheckOutDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/Database.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/DateTimeToInstantConverter.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/DbInsert.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/MemberDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/NotificationDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/StaffDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/TimeSlotDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/UserCommonInfoDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/UserDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/VenueDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/db/VenueUsageDatabase.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/misc/Callable.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/service/NotificationService.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/servlet/BookingServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/servlet/LoginServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/servlet/venue/VenueServletUrl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/test/TestAddMember.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/test/TestMemberQuery.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/test/TestQueryVenue.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+  </component>
+</project>
