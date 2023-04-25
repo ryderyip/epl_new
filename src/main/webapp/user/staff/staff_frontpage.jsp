@@ -61,7 +61,7 @@
                         <td align="center"><a href="#"><img src="#" width="250px" height=250px"/></a></td>
                     </tr>
                     <tr>
-                        <td align="center"><a class="btn btn-primary" href="venue_management.jsp">Venue Management</a></td>
+                        <td align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/venue/get">Venue Management</a></td>
                     </tr>
                 </table>
             </td>

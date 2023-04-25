@@ -53,7 +53,7 @@
           <div class="card-body p-4 p-md-5">
             <h3 align="center">Registration Form</h3>
             
-            <form>
+            <form method="post" action="${pageContext.request.contextPath}/register">
 
               <div class="row">
                 <div class="col-md-6 mb-4">
