@@ -10,10 +10,12 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
       <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-      <title>Staff</title>
+      <title>Venue Update</title>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
+    <jsp:useBean id="venue" scope="request" class="ict.data_objects.entities.Venue"/>
+    
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="staff_frontpage.jsp">EPL Booking</a>
@@ -32,10 +34,10 @@
                     
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="member_frontpage.jsp">Home</a>
+                            <a class="nav-link" aria-current="page" href="member_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="venue_detail.jsp">Venue Management</a>
+                            <a class="nav-link active" href="venue_detail.jsp">Venue Management</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Booking Management</a>
@@ -49,49 +51,46 @@
         </div>
     </nav><br><br><br>
     <!----End Navbar---->
+    <center><h3 class="offcanvas-title">Venue Detail</h3></center>
+    <hr>
+    <div class="container">
+        <form method="post" action="#">
+            <input type="hidden" name="id" value="${param.id}" class="from-control"/>
+            <label for="name">Name:</label>
+            <input type="text" name="name" value="${venue.name}" class="from-control"/><br>
+
+            <label for="type">Type:</label>
+            <input type="text" name="type" value="${venue.type}" class="from-control"/><br>
+
+            <label for="description">Description:</label>
+            <input type="text" name="descripion" class="from-control" value="${venue.description}"/><br>
+            
+            <label for="location">Location:</label>
+            <input type="text" name="location" value="${venue.location}" class="from-control"/><br>
+
+            <label for="capacity">Capacity:</label>
+            <input type="number" name="capacity" value="${venue.capacity}" class="from-control"/><br>
+            
+            <label for="hourlyRate">Booking Hourly Rate:</label>
+            <input type="number" name="hourlyRate" value="${venue.bookingFee.hourlyRate}" class="from-control"/><br>
+            
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="available" id="ava1" ${venue.available ? 'checked' : ''}>
+                <label class="form-check-label" for="ava1">
+                    Avaliable
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="available" id="ava2" ${venue.available ? 'checked' : ''}>
+                <label class="form-check-label" for="ava2">
+                    Not Avaliable
+                </label>
+            </div>
+                
+            <br>
+            <center><input type="submit" class="btn btn-primary" /></center>
+        </form>
+    </div>
     
-    <center><h3 class="offcanvas-title">Staff page</h3></center>
-    <hr>
-    <table border="0" width="100%">
-        <tr>
-            <td width="20%">
-                        
-            </td>
-            
-            <td width="30%">
-                <table border="1" width="90%">
-                    <tr>
-                        <td align="center"><a href="#"><img src="#" width="250px" height=250px"/></a></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/venue/get">Venue Management</a></td>
-                    </tr>
-                </table>
-            </td>
-            
-            <td width="30%">
-                <table border="1" width="90%">
-                    <tr>
-                        <td align="center"><a href="#"><img src="#" width="250px" height=250px"/></a></td>
-                    </tr>
-                    <tr>
-                        <td align="center"><a class="btn btn-primary" href="#">Booking Management</a></td>
-                    </tr>
-                </table>
-            </td>
-            <td width="20%">
-                        
-            </td>
-        </tr>
-    </table>
-    <!---footer--->
-    <hr>
-    <center>
-    <%
-	Date dNow = new Date();
-	SimpleDateFormat year = new SimpleDateFormat("yyyy");
-	out.print(String.format("Copyright EPL %s. All rights reserved.", year.format(dNow)));
-    %> 
-    </center>
     </body>
 </html>

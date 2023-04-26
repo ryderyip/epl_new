@@ -43,6 +43,9 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Booking Management</a>
                             </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="member_management.jsp">Member Management</a>
+                            </li>
                         </ul>
                     </div>
                 </div>

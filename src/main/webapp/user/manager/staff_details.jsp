@@ -10,13 +10,14 @@
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
       <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
-      <title>Home Page</title>
+      <title>Staff Details</title>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
+    
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="member_frontpage.jsp">EPL Booking</a>
+            <a class="navbar-brand" href="staff_frontpage.jsp">EPL Booking</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -32,10 +33,10 @@
                     
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="manager_frontpage.jsp">Home</a>
+                            <a class="nav-link" aria-current="page" href="manager_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="staff_management.jsp">Staff Management</a>
+                            <a class="nav-link active" href="staff_management.jsp">Staff Management</a>
                         </li>
                         
                     </ul>
@@ -44,16 +45,47 @@
         </div>
     </nav><br><br><br>
     <!----End Navbar---->
-
-
-    <!---footer--->
+    <c:set var="id" value="${param.id}" />
+    <center><h3 class="offcanvas-title">Staff Details</h3></center>
     <hr>
-    <center>
-    <%
-	Date dNow = new Date();
-	SimpleDateFormat year = new SimpleDateFormat("yyyy");
-	out.print(String.format("Copyright EPL %s. All rights reserved.", year.format(dNow)));
-    %> 
-    </center>
+    <div class="container">
+        <form method="post" action="#">
+            <input type="hidden" name="id" value="${id}" />
+        <p>
+            <label>Username:</label>
+            <input type="text" name="username" value="${staff.username}" class="form-control"/>
+        </p>
+        <p>
+            <label>Name:</label>
+            <input type="text" name="name" value="${staff.name}" class="form-control"/>
+        </p>
+        <p>
+            <label>Phone:</label>
+            <input type="text" name="phone" value="${staff.phone}" class="form-control"/>
+        </p>
+        <p>
+            <label>Gender:</label>
+            <input type="text" name="gender" value="${staff.gender}" class="form-control"/>
+        </p>
+        <p>
+            <label>Email:</label>
+            <input type="text" name="email" value="${staff.email}" class="form-control"/>
+        </p>
+        <p>
+            <label>Staff Role:</label>
+            <select name="staffRole" class="form-select">
+                <option value="junior" ${staff.role == 'junior' ? 'selected' : ''}>Junior Staff</option>
+                <option value="management" ${staff.role == 'managementr' ? 'selected' : ''}>Management Staff</option> 
+            </select>
+        </p>
+        
+        <p>
+            <label>Venues in Charge:</label>
+            <input type="text" name="venues" value="${staff.info}" class="form-control"/>
+        </p>
+        <input type="submit" value="Update" class="btn btn-primary"/>
+        </form>
+    </div>
+    
     </body>
 </html>
