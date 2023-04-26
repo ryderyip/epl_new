@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
 <!doctype html>
+<jsp:useBean id="venues" scope="request" class="java.util.ArrayList"/>
 <html lang="en">
     <head>
       <meta charset="utf-8">
@@ -52,45 +54,71 @@
     
     <center><h3 class="offcanvas-title">Venue Booking</h3></center>
     <hr>
-    <table class="table table-striped" width="90%">
-        <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">Location</th>
-              <th scope="col">Type</th>
-              <th scope="col">Capacity</th>
-              <th scope="col">Available</th>
-              <th scope="col">Image</th>
-              <th scope="col">Booking Fee</th>
-              <th scope="col">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>XXX</td>
-              <td>XXX</td>
-              <td>XXX</td>
-              <td>XXX</td>
-              <td>XXX</td>
-              <td>XXX</td>
-              <td>XXX</td>
-              <td><a href="#" class="btn btn-primary">Booking</a></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>YYY</td>
-              <td>YYY</td>
-              <td>YYY</td>
-              <td>YYY</td>
-              <td>YYY</td>
-              <td>YYY</td>
-              <td>YYY</td>
-              <td><a href="#" class="btn btn-primary">Booking</a></td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="container">
+    <form method="post" action="${pageContext.request.contextPath}/booking/create">
+        <input type="hidden" name="memberId" value="<%=request.getAttribute("memberId")%>">
+
+        <div class="container">
+            <div class="row g-3 align-items-center">
+                <label for="timeslot">Timeslot:</label>
+            </div>
+            <div class="row align-items-end">
+              <div class="col"><input type="time" name="beginTime" class="form-control" placeholder="Begin Time"></div>
+              <div class="col"><input type="time" name="endTime" class="form-control" placeholder="End Time"></div>
+            </div>
+        
+        
+        <br><br>
+        <label for="venue">Venue:</label>
+        <select class="form-select" name="venue">
+            <c:forEach var="venue" items="${venues}">
+                <option value="${venue.id}">${venue.name}</option>
+            </c:forEach>
+        </select>
+        <br><br><hr>
+        <center>
+            <label for="guests" class="form-label"><h3>Guest List</h3></label>
+        <table id="guest" width="100%">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><input type="text" name="name[]" class="form-control" placeholder="Name"></td>
+                    <td><input type="email" name="email[]" class="form-control"  placeholder="Email"></td>
+                    <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
+                </tr>
+            </tbody>
+        </table>
+        <br><br>
+        <button type="button" class="btn btn-primary" onclick="addGuest()">Add Guest</button>
+        <hr>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        </center>
+    </form>
+    </div>
+    <script>
+        function addGuest() {
+            var table = document.getElementById("guest");
+            var row = table.insertRow(-1);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            var cell3 = row.insertCell(2);
+            cell1.innerHTML = '<input type="text" name="name[]" class="form-control new-row" placeholder="Name">';
+            cell2.innerHTML = '<input type="email" name="email[]" class="form-control new-row" placeholder="Email">';
+            cell3.innerHTML = '<button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>';
+        }
+        
+        function removeRow(button) {
+            var row = button.parentNode.parentNode;
+            row.parentNode.removeChild(row);
+        }
+    </script>    
+        
     <!---footer--->
     <hr>
     <center>
@@ -102,3 +130,7 @@
     </center>
     </body>
 </html>
+
+
+
+
