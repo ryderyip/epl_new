@@ -60,10 +60,10 @@
             out.println("</tr>");
             for (Object customer : venues) {
                 Venue c = (Venue) customer;
-                out.println("<tr>");
-                out.println("<td>" + c.getName() + "</td>");
+                out.println("<tr><td>");
+                out.println(c.getName());
                 out.println("<a href=\""+ request.getContextPath()+"/venue/get?id="+ c.getId() +"\" class='btn btn-primary'>Go detail page</a>");
-                out.println("</tr>");
+                out.println("</td></tr>");
             }
             out.println("</table>");
         %>

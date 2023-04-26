@@ -4,8 +4,10 @@ import ict.data_objects.entities.UserCommonInfo;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.List;
 
 public class UserCommonInfoDatabase implements DbInsert<UserCommonInfo> {
+    public static final String TABLE_NAME = "user_common_info";
     private final Database<UserCommonInfo> db;
 
     public UserCommonInfoDatabase() {
@@ -28,11 +30,23 @@ public class UserCommonInfoDatabase implements DbInsert<UserCommonInfo> {
             statement.setString(4, info.getEmail());
             statement.setString(5, info.getUsername());
             statement.setString(6, info.getPassword());
-            id = db.insertRow(statement, "user_common_info");
+            id = db.insertRow(statement, TABLE_NAME);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         info.setId(id);
         return id;
+    }
+
+    public List<UserCommonInfo> queryByEmail(String email) {
+        return db.queryByStringColumn(TABLE_NAME, "email", email);
+    }
+
+    public List<UserCommonInfo> queryByPhone(String phone) {
+        return db.queryByStringColumn(TABLE_NAME, "phone", phone);
+    }
+
+    public List<UserCommonInfo> queryByUsername(String username) {
+        return db.queryByStringColumn(TABLE_NAME, "username", username);
     }
 }

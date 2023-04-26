@@ -1,11 +1,13 @@
 package ict.db;
 
 import com.mysql.cj.jdbc.MysqlDataSource;
+import ict.data_objects.entities.UserCommonInfo;
 import ict.misc.Callable;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class Database<T> {
     private final Callable<ResultSet, T> resultSetToEntity;
@@ -97,5 +99,32 @@ public class Database<T> {
             throw new RuntimeException(e);
         }
         return id;
+    }
+    
+    public List<T> queryByStringColumn(String table, String column, String value) {
+        String sql = "select * from "+table+" where " + column + " = ?;";
+        List<T> list;
+        try {
+            PreparedStatement s = getConnection().prepareStatement(sql);
+            s.setString(1, value);
+            list = query(s);
+            System.out.println(list.size());
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
+    }
+    
+    public List<T> queryByIntColumn(String table, String column, int value) {
+        String sql = "select * from "+table+" where " + column + " = ?;";
+        List<T> list;
+        try {
+            PreparedStatement s = getConnection().prepareStatement(sql);
+            s.setInt(1, value);
+            list = query(s);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
     }
 }
