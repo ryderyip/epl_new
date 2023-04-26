@@ -5,6 +5,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
 <!doctype html>
+<%String memberId = (String)request.getAttribute("memberId");%>
 <jsp:useBean id="venues" scope="request" class="java.util.ArrayList"/>
 <html lang="en">
     <head>
@@ -63,14 +64,14 @@
                 <label for="timeslot">Timeslot:</label>
             </div>
             <div class="row align-items-end">
-              <div class="col"><input type="time" name="beginTime" class="form-control" placeholder="Begin Time"></div>
-              <div class="col"><input type="time" name="endTime" class="form-control" placeholder="End Time"></div>
+              <div class="col"><input type="time" name="beginTime" class="form-control" placeholder="Begin Time" required></div>
+              <div class="col"><input type="time" name="endTime" class="form-control" placeholder="End Time" required></div>
             </div>
         
         
         <br><br>
         <label for="venue">Venue:</label>
-        <select class="form-select" name="venue">
+        <select class="form-select" name="venue" required>
             <c:forEach var="venue" items="${venues}">
                 <option value="${venue.id}">${venue.name}</option>
             </c:forEach>
@@ -88,8 +89,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="text" name="name[]" class="form-control" placeholder="Name"></td>
-                    <td><input type="email" name="email[]" class="form-control"  placeholder="Email"></td>
+                    <td><input type="text" name="name[]" class="form-control" placeholder="Name" required></td>
+                    <td><input type="email" name="email[]" class="form-control"  placeholder="Email" required></td>
                     <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
                 </tr>
             </tbody>
@@ -108,8 +109,8 @@
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
-            cell1.innerHTML = '<input type="text" name="name[]" class="form-control new-row" placeholder="Name">';
-            cell2.innerHTML = '<input type="email" name="email[]" class="form-control new-row" placeholder="Email">';
+            cell1.innerHTML = '<input type="text" name="name[]" class="form-control new-row" placeholder="Name" required>';
+            cell2.innerHTML = '<input type="email" name="email[]" class="form-control new-row" placeholder="Email" required>';
             cell3.innerHTML = '<button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>';
         }
         
