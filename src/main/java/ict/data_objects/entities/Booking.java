@@ -6,6 +6,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.Collections;
+import java.util.List;
 
 public class Booking implements Serializable {
     private int id;
@@ -17,8 +19,11 @@ public class Booking implements Serializable {
     private BookingRequestResponse bookingRequestResponse;
     @Nullable
     private VenueUsage venueUsage;
+    private List<Guest> guests = Collections.emptyList();
 
-    public Booking(int id, Member booker, @NotNull Timeslot timeSlot, Venue venue, Instant requestedOn, @Nullable BookingRequestResponse bookingRequestResponse, @Nullable VenueUsage venueUsage) {
+    public Booking() {}
+
+    public Booking(int id, Member booker, @NotNull Timeslot timeSlot, Venue venue, Instant requestedOn, @Nullable BookingRequestResponse bookingRequestResponse, @Nullable VenueUsage venueUsage, List<Guest> guests) {
         this.id = id;
         this.booker = booker;
         this.timeSlot = timeSlot;
@@ -26,6 +31,7 @@ public class Booking implements Serializable {
         this.requestedOn = requestedOn;
         this.bookingRequestResponse = bookingRequestResponse;
         this.venueUsage = venueUsage;
+        this.guests = guests;
     }
 
     public int getId() {
@@ -88,5 +94,13 @@ public class Booking implements Serializable {
 
     public void setVenueUsage(@Nullable VenueUsage venueUsage) {
         this.venueUsage = venueUsage;
+    }
+
+    public List<Guest> getGuests() {
+        return guests;
+    }
+
+    public void setGuests(List<Guest> guests) {
+        this.guests = guests;
     }
 }
