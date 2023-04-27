@@ -15,7 +15,7 @@
     <body>
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="staff_frontpage.jsp">EPL Booking</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/user/staff/staff_frontpage.jsp">EPL Booking</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,19 +28,18 @@
                 </div>
                 
                 <div class="offcanvas-body">
-                    
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="member_frontpage.jsp">Home</a>
+                            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/user/staff/staff_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="venue_detail.jsp">Venue Management</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/staff/venue_detail.jsp">Venue Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Booking Management</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/staff/booking_list.jsp">Booking Management</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="member_management.jsp">Member Management</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/staff/member_management.jsp">Member Management</a>
                         </li>
                     </ul>
                 </div>
@@ -60,7 +59,7 @@
             <td width="30%">
                 <table border="1" width="90%">
                     <tr>
-                        <td align="center"><a href="#"><img src="#" width="250px" height=250px"/></a></td>
+                        <td align="center"><a href="${pageContext.request.contextPath}/venue/get"><img src="#" width="250px" height=250px"/></a></td>
                     </tr>
                     <tr>
                         <td align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/venue/get">Venue Management</a></td>
@@ -71,10 +70,10 @@
             <td width="30%">
                 <table border="1" width="90%">
                     <tr>
-                        <td align="center"><a href="#"><img src="#" width="250px" height=250px"/></a></td>
+                        <td align="center"><a href="${pageContext.request.contextPath}/user/staff/booking_list.jsp"><img src="#" width="250px" height=250px"/></a></td>
                     </tr>
                     <tr>
-                        <td align="center"><a class="btn btn-primary" href="#">Booking Management</a></td>
+                        <td align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/user/staff/booking_list.jsp">Booking Management</a></td>
                     </tr>
                 </table>
             </td>

@@ -17,8 +17,9 @@ public class VenueDatabase {
                 rs.getBoolean("available"),
                 rs.getString("description"),
                 rs.getString("type"),
-                rs.getInt("capacity")
-        ));
+                rs.getInt("capacity"),
+                new BookingFeeDatabase().queryByVenueId(rs.getInt("id"))
+            ));
     }
     
     public List<Venue> query() {
