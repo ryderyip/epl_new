@@ -1,9 +1,12 @@
 package ict.servlet.booking;
 
-import ict.data_objects.entities.*;
-import ict.db.*;
+import ict.data_objects.entities.BookingFee;
+import ict.data_objects.non_entties.UserType;
+import ict.db.BookingDatabase;
+import ict.db.BookingFeeDatabase;
 import ict.service.BookingRequestResponseService;
 import ict.service.ErrorMessageWritingService;
+import ict.service.login_session.LoggedInUserChecker;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -14,7 +17,7 @@ import java.io.IOException;
 import java.time.Year;
 
 @WebServlet(urlPatterns = {"/booking/response"})
-public class BookingUpdateServlet extends HttpServlet {
+public class BookingRequestResponseServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int bookingId = Integer.parseInt(request.getParameter("id"));
         String bookingResponse = request.getParameter("response");
@@ -22,6 +25,12 @@ public class BookingUpdateServlet extends HttpServlet {
             ErrorMessageWritingService.write(response, "Post parameter error", "booking request response must be 'approve' or 'decline'");
             return;
         }
+
+        if (new LoggedInUserChecker(request).checkIsLoggedInAndOfType(UserType.MEMBER)) {
+            ErrorMessageWritingService.write(response, "Wrong user type", "You must be a staff to execute this action");
+            return;
+        }
+        
         boolean responseSuccess;
         if (bookingResponse.equals("approve"))
             responseSuccess = approveBooking(bookingId, response);

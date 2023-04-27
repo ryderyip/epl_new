@@ -28,7 +28,8 @@ public class GetVenueServlet extends HttpServlet {
     private void getById(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException {
         Venue venue = db.queryById(Integer.parseInt(id));
         request.setAttribute("venue", venue);
-        String destination = "/user/staff/venue_detail.jsp";
+        String redirect = request.getParameter("redirect");
+        String destination = redirect != null ? redirect : "/user/staff/venue_detail.jsp";
         request.getRequestDispatcher(destination).forward(request, response);
     }
 

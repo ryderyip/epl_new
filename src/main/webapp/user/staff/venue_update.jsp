@@ -1,3 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%
+    if (request.getAttribute("venue") == null) {
+        String id = request.getParameter("id");
+        if (id == null)
+            response.sendRedirect(request.getContextPath() + "/venue/get");
+        else
+            response.sendRedirect(request.getContextPath() + "/venue/get?id=" + id + "&redirect=/user/staff/venue_update.jsp?id=" + id);
+    }
+%>
+<jsp:useBean id="venue" scope="request" class="ict.data_objects.entities.Venue"/>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
          pageEncoding="ISO-8859-1"%>
 
@@ -51,6 +62,8 @@
 <!----End Navbar---->
 <center><h3 class="offcanvas-title">Venue Detail</h3></center>
 <hr>
+
+
 <div class="container">
     <form method="post" action="#">
         <input type="hidden" name="id" value="${param.id}" class="form-control"/>
@@ -92,24 +105,19 @@
                     <input type="number" name="capacity" value="${venue.capacity}" class="form-control"/>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                    <label for="hourlyRate">Booking Fee:</label>
-                    <input type="number" name="hourlyRate" value="${venue.bookingFee}" class="form-control"/>
-                </div>
-            </div>
+            <div class="col-md-6 mb-4"></div>
         </div>
 
         <div class="row">
             <div class="col-md-6 mb-4">
                 <div class="form-outline">
-                    <label for="capacity">Available:</label>
+                    <label>Available:</label>
                     <input class="form-check-input" type="radio" name="available" id="ava1" ${venue.available ? 'checked' : ''}>
                     <label class="form-check-label" for="ava1">
                         Avaliable
                     </label>
                     &nbsp&nbsp&nbsp&nbsp&nbsp
-                    <input class="form-check-input" type="radio" name="available" id="ava2" ${venue.available ? 'checked' : ''}>
+                    <input class="form-check-input" type="radio" name="available" id="ava2" ${!venue.available ? 'checked' : ''}>
                     <label class="form-check-label" for="ava2">
                         Not Avaliable
                     </label>
@@ -129,12 +137,12 @@
         </tr>
 
 
-        <c:forEach var="BookingFee" items="${BookingFees}">
+        <c:forEach var="bookingFee" items="${venue.bookingFees}">
             <tr>
-                <td>${BookingFee.year}</td>
-                <td>${BookingFee.hourlyRate}</td>
+                <td>${bookingFee.year}</td>
+                <td>${bookingFee.hourlyRate}</td>
                 <c:choose>
-                    <c:when test="${empty BookingFee.hourlyRate}">
+                    <c:when test="${empty bookingFee.hourlyRate}">
                         <td><a class="btn btn-primary" href="#">Add</a></td>
                     </c:when>
                 </c:choose>
