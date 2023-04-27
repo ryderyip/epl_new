@@ -5,8 +5,12 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
 <!doctype html>
-<%String memberId = (String)request.getAttribute("memberId");%>
 <jsp:useBean id="venues" scope="request" class="java.util.ArrayList"/>
+<%
+    String memberId = (String)request.getAttribute("memberId");
+    if (memberId == null || venues == null)
+        response.sendRedirect(request.getContextPath() + "/prebooking_create");
+%>
 <html lang="en">
     <head>
       <meta charset="utf-8">
@@ -38,7 +42,7 @@
                             <a class="nav-link" href="member_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="member_booking.jsp">Venue Booking</a>
+                            <a class="nav-link active" href="${pageContext.request.contextPath}/prebooking_create">Venue Booking</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="my_booking.jsp">Book Management</a>
@@ -56,6 +60,10 @@
     <form method="post" action="${pageContext.request.contextPath}/booking/create">
         <input type="hidden" name="memberId" value="<%=request.getAttribute("memberId")%>">
 
+
+        <label for="date">Date:</label>
+        <input type="date" name="date" id="date" required>
+        
         <div class="container">
             <div class="row g-3 align-items-center">
                 <label for="timeslot">Timeslot:</label>
@@ -68,7 +76,7 @@
         
         <br><br>
         <label for="venue">Venue:</label>
-        <select class="form-select" name="venue" required>
+        <select class="form-select" name="venueId" required>
             <c:forEach var="venue" items="${venues}">
                 <option value="${venue.id}">${venue.name}</option>
             </c:forEach>
@@ -86,8 +94,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><input type="text" name="name[]" class="form-control" placeholder="Name" required></td>
-                    <td><input type="email" name="email[]" class="form-control"  placeholder="Email" required></td>
+                    <td><input type="text" name="names[]" class="form-control" placeholder="Name" required></td>
+                    <td><input type="email" name="emails[]" class="form-control"  placeholder="Email" required></td>
                     <td><button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button></td>
                 </tr>
             </tbody>

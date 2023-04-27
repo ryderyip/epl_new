@@ -38,12 +38,12 @@
     <file url="file://$PROJECT_DIR$/src/main/java/ict/db/VenueUsageDatabase.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ict/misc/Callable.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ict/service/NotificationService.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/ict/servlet/BookingServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ict/servlet/LoginServlet.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/servlet/booking/BookingServlet.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ict/servlet/venue/VenueServletUrl.java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java/ict/test/GeneralTest.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ict/test/TestAddMember.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/java/ict/test/TestMemberQuery.java" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/src/main/java/ict/test/TestQueryVenue.java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
   </component>
 </project>

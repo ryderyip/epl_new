@@ -23,7 +23,6 @@ public class NotificationDatabase {
     }
 
     public void add(Notification notification) {
-        // todo set seen default false
         String sql = "insert into notification (user_info_id, message) values (?,?);";
         try {
             PreparedStatement s = db.getConnection().prepareStatement(sql);

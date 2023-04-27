@@ -9,23 +9,19 @@ public class Venue implements Serializable {
     private String location;
     private boolean available;
     private int capacity;
-    private BookingFee bookingFee;
-    private String image;
     private String description;
     private String type;
 
     public Venue() {}
 
-    public Venue(int id, String name, String location, boolean available, String image, String description, String type, int capacity, BookingFee bookingFee) {
+    public Venue(int id, String name, String location, boolean available, String description, String type, int capacity) {
         this.id = id;
         this.name = name;
         this.location = location;
         this.available = available;
-        this.image = image;
         this.description = description;
         this.type = type;
         this.capacity = capacity;
-        this.bookingFee = bookingFee;
     }
 
     public int getId() {
@@ -60,14 +56,6 @@ public class Venue implements Serializable {
         this.available = available;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -90,13 +78,5 @@ public class Venue implements Serializable {
 
     public void setCapacity(int capacity) {
         this.capacity = capacity;
-    }
-
-    public BookingFee getBookingFee() {
-        return bookingFee;
-    }
-
-    public void setBookingFee(BookingFee bookingFee) {
-        this.bookingFee = bookingFee;
     }
 }

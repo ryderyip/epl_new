@@ -7,9 +7,12 @@ public class LoginResult {
     public boolean success;
     @Nullable
     public UserType userType;
+    @Nullable
+    public Integer userId;
 
-    public LoginResult(boolean success, @Nullable UserType userType) {
+    public LoginResult(boolean success, @Nullable UserType userType, @Nullable Integer userId) {
         this.success = success;
         this.userType = userType;
+        this.userId = userId;
     }
 }
