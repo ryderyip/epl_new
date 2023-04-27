@@ -41,10 +41,7 @@
                             <a class="nav-link active" href="member_booking.jsp">Venue Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="member_guest.jsp">Guest Management</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="member_record.jsp">Record</a>
+                            <a class="nav-link" href="my_booking.jsp">Book Management</a>
                         </li>
                     </ul>
                 </div>

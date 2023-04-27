@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
+<jsp:useBean id="venue" scope="request" class="ict.data_objects.entities.Venue"/>
 <!doctype html>
 <html lang="en">
     <head>
@@ -71,8 +72,8 @@
             <label for="capacity">Capacity:</label>
             <input type="number" name="capacity" value="${venue.capacity}" class="from-control"/><br>
             
-            <label for="hourlyRate">Booking Hourly Rate:</label>
-            <input type="number" name="hourlyRate" value="${venue.bookingFee.hourlyRate}" class="from-control"/><br>
+            <label for="hourlyRate">Booking Fee:</label>
+            <input type="number" name="hourlyRate" value="${venue.bookingFee}" class="from-control"/><br>
             
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="available" id="ava1" ${venue.available ? 'checked' : ''}>
