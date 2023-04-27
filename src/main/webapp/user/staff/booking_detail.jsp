@@ -100,14 +100,16 @@
 
     <c:choose>
         <c:when test="${not booking.bookingRequestResponse.approved}">
+            <center>
             <form action="${pageContext.request.contextPath}/booking/response?response=approve" method="post">
                 <input type="hidden" name="id" value="${booking.id}">
-                <input type="submit" value="Approve">
+                <input type="submit" value="Approve" class="btn btn-primary">
             </form>
             <form action="${pageContext.request.contextPath}/booking/response?response=decline" method="post">
                 <input type="hidden" name="id" value="${booking.id}">
-                <input type="submit" value="Decline">
+                <input type="submit" value="Decline" class="btn btn-danger">
             </form>
+            </center>
         </c:when>
         <c:when test="${BookingRequestResponse.isApproved() and not bookingApproved.isPaymentConfirmed()}">
             <p>Payment not settled yet</p>
