@@ -4,9 +4,9 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>Registration Failed</h1>
+    <h1>Problem</h1>
     <p>
-        Error Message: <%=(String) request.getAttribute("errorMessage")%>
+        <%=(String) request.getAttribute("errorMessage")%>
     </p>
     <a href="javascript:history.back()">Go Back</a>
 </body>

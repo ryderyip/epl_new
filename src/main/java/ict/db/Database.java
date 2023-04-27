@@ -1,13 +1,10 @@
 package ict.db;
 
-import com.mysql.cj.jdbc.MysqlDataSource;
-import ict.data_objects.entities.UserCommonInfo;
 import ict.misc.Callable;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Function;
 
 public class Database<T> {
     private final Callable<ResultSet, T> resultSetToEntity;
@@ -126,5 +123,16 @@ public class Database<T> {
             throw new RuntimeException(e);
         }
         return list;
+    }
+    
+    public void remove(String table, int id){ 
+        String sql = "DELETE FROM "+table+" where id = ?;";
+        try {
+            PreparedStatement s = getConnection().prepareStatement(sql);
+            s.setInt(1, id);
+            executeNonQuery(s);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

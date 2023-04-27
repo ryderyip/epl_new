@@ -15,11 +15,9 @@ public class VenueDatabase {
                 rs.getString("name"),
                 rs.getString("location"),
                 rs.getBoolean("available"),
-                rs.getString("image"),
                 rs.getString("description"),
                 rs.getString("type"),
-                rs.getInt("capacity"),
-                new BookingFeeDatabase().queryById(rs.getInt("booking_fee_id"))
+                rs.getInt("capacity")
         ));
     }
     
@@ -51,5 +49,16 @@ public class VenueDatabase {
 
     public Venue queryById(int id) {
         return db.queryById(id, "venue");
+    }
+    
+    public List<Venue> queryAvailableVenues() {
+        List<Venue> list;
+        try {
+            PreparedStatement statement = db.getConnection().prepareStatement("SELECT * FROM venue where available = true;");
+            list = db.query(statement);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
     }
 }

@@ -15,8 +15,8 @@ public class LoginService {
         List<User> q = members.stream().filter(matchUsernameAndPassword(username, password)).toList();
 
         boolean loginSuccess = !q.isEmpty();
-        UserType userType = UserTypeIdentifier.identify(q.get(0));
-        return new LoginResult(loginSuccess, userType);
+        UserType userType = loginSuccess ? UserTypeIdentifier.identify(q.get(0)) : null;
+        return new LoginResult(loginSuccess, userType, loginSuccess ? q.get(0).getId() : null);
     }
 
     @NotNull

@@ -35,7 +35,7 @@
                             <a class="nav-link" href="member_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="member_booking.jsp">Venue Booking</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/prebooking_create">Venue Booking</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="member_guest.jsp">Guest Management</a>

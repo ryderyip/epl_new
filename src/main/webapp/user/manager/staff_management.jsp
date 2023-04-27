@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
+<%@ page import="ict.data_objects.entities.Staff" %>
+<%@ page import="java.util.ArrayList" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -14,10 +16,12 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
+
+    <jsp:useBean id="staffs" scope="request" class="java.util.ArrayList"/>
     
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="staff_frontpage.jsp">EPL Booking</a>
+            <a class="navbar-brand" href="manager_frontpage.jsp">EPL Booking</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>

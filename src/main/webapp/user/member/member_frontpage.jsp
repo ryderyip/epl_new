@@ -35,7 +35,7 @@
                             <a class="nav-link active" aria-current="page" href="member_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="member_booking.jsp">Venue Booking</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/prebooking_create">Venue Booking</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="member_guest.jsp">Guest Management</a>
@@ -60,10 +60,10 @@
             <td width="20%">
                 <table border="1" width="90%">
                     <tr>
-                        <td align="center"><a href="booking.jsp"><img src="../../img/booking.png" width="250px" height=250px"/></a></td>
+                        <td align="center"><a href="${pageContext.request.contextPath}/user/member/booking_create.jsp"><img src="${pageContext.request.contextPath}/img/booking.png" width="250px" height=250px"/></a></td>
                     </tr>
                     <tr>
-                        <td align="center"><a class="btn btn-primary" href="booking.jsp">Venue Booking</a></td>
+                        <td align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/user/member/booking_create.jsp">Venue Booking</a></td>
                     </tr>
                 </table>
             </td>
@@ -71,7 +71,7 @@
             <td width="20%">
                 <table border="1" width="90%">
                     <tr>
-                        <td align="center"><a href="Manage.jsp"><img src="../../img/manage.png" width="250px" height=250px"/></a></td>
+                        <td align="center"><a href="Manage.jsp"><img src="${pageContext.request.contextPath}/img/manage.png" width="250px" height=250px"/></a></td>
                     </tr>
                     <tr>
                         <td align="center"><a class="btn btn-primary" href="Manage.jsp">Guest Management</a></td>
@@ -82,7 +82,7 @@
             <td width="20%">
                 <table border="1" width="90%">
                     <tr>
-                        <td align="center"><a href="Record.jsp"><img src="../../img/record.png" width="250px" height=250px"/></a></td>
+                        <td align="center"><a href="Record.jsp"><img src="${pageContext.request.contextPath}/img/record.png" width="250px" height=250px"/></a></td>
                     </tr>
                     <tr>
                         <td align="center"><a class="btn btn-primary" href="Record.jsp">Record</a></td>

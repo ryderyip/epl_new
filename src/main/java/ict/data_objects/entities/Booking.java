@@ -1,24 +1,26 @@
 package ict.data_objects.entities;
 
 
+import org.jetbrains.annotations.NotNull;
+
+import java.io.Serializable;
 import java.time.Instant;
 
-public class Booking {
+public class Booking implements Serializable {
     private int id;
+    
     private Member booker;
-    private BookingRequestResponse bookingResponse;
     private Timeslot timeSlot;
     private Venue venue;
-    private VenueUsage venueUsage;
     private Instant requestedOn;
 
-    public Booking(int id, Member booker, BookingRequestResponse bookingResponse, Timeslot timeSlot, Venue venue, VenueUsage venueUsage, Instant requestedOn) {
+    public Booking() {}
+
+    public Booking(int id, Member booker, @NotNull Timeslot timeSlot, Venue venue, Instant requestedOn) {
         this.id = id;
         this.booker = booker;
-        this.bookingResponse = bookingResponse;
         this.timeSlot = timeSlot;
         this.venue = venue;
-        this.venueUsage = venueUsage;
         this.requestedOn = requestedOn;
     }
 
@@ -38,14 +40,6 @@ public class Booking {
         this.booker = booker;
     }
 
-    public BookingRequestResponse getBookingResponse() {
-        return bookingResponse;
-    }
-
-    public void setBookingResponse(BookingRequestResponse bookingResponse) {
-        this.bookingResponse = bookingResponse;
-    }
-
     public Timeslot getTimeSlot() {
         return timeSlot;
     }
@@ -60,14 +54,6 @@ public class Booking {
 
     public void setVenue(Venue venue) {
         this.venue = venue;
-    }
-
-    public VenueUsage getVenueUsage() {
-        return venueUsage;
-    }
-
-    public void setVenueUsage(VenueUsage venueUsage) {
-        this.venueUsage = venueUsage;
     }
 
     public Instant getRequestedOn() {
