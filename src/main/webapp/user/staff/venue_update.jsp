@@ -128,28 +128,47 @@
         <center><input type="submit" class="btn btn-primary" value="Update"/></center>
     </form><br><hr>
     <center><h3 class="offcanvas-title">Hourly Rate Update</h3></center><br><hr>
-    <table class="table table-striped">
-        <tr>
-            <th>Year</th>
-            <th>Hourly Rate</th>
-            <th>Action</th>
-            <th></th>
-        </tr>
 
-
-        <c:forEach var="bookingFee" items="${venue.bookingFees}">
-            <tr>
-                <td>${bookingFee.year}</td>
-                <td>${bookingFee.hourlyRate}</td>
-                <c:choose>
-                    <c:when test="${empty bookingFee.hourlyRate}">
-                        <td><a class="btn btn-primary" href="#">Add</a></td>
-                    </c:when>
-                </c:choose>
-            </tr>
-        </c:forEach>
-    </table>
+    <form method="post" action="#">
+		<table id="hourlyRatesTable" class="table table-bordered">
+			<tr>
+				<th>Year</th>
+				<th>Hourly Rate</th>
+			</tr>
+            <c:forEach var="bookingFee" items="${venue.bookingFees}">
+				<tr>
+					<td width="30%"><input type="text" name="year" value="${bookingFee.year}" class="form-control" disabled /></td>
+					<td><input type="text" name="hourlyRate_0" value="${bookingFee.hourlyRate}" class="form-control"/></td>
+				</tr>
+			</c:forEach>
+		</table>
+                <center>
+		<input type="button" value="Add" onclick="addRow()" class="btn btn-primary"/>
+		<input type="button" value="Remove" onclick="removeRow()" class="btn btn-danger"/>
+		<input type="submit" value="Save" class="btn btn-primary">
+                </center>
+	</form>
 </div>
+<br><br>
+<script>
+    function addRow() {
+        var table = document.getElementById("hourlyRatesTable");
+        var rowCount = table.rows.length;
+        var yearInput = table.rows[rowCount - 1].cells[0].getElementsByTagName("input")[0];
+        var year = parseInt(yearInput.value) + 1;
+        var row = table.insertRow(rowCount);
+        var yearCell = row.insertCell(0);
+        var rateCell = row.insertCell(1);
+        yearCell.innerHTML = '<input type="text" class="form-control" name="year" value="' + year + '" disabled />';
+        rateCell.innerHTML = '<input type="number" class="form-control" name="hourlyRate_' + (rowCount - 1) + '"/>';
+    }
 
+    function removeRow() {
+        var table = document.getElementById("hourlyRatesTable");
+        if (table.rows.length > 2) {
+            table.deleteRow(table.rows.length - 1);
+        }
+    }
+</script>
 </body>
 </html>
