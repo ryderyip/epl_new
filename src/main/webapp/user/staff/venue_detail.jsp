@@ -66,7 +66,7 @@
     <center><h3 class="offcanvas-title">Venue Detail</h3></center>
     <hr>
     <div class="container">
-        <table id="guest" width="100%">
+        <table id="guest" width="100%" class="table table-bordered">
             <thead>
                 <tr>
                     <th>Name</th>
@@ -92,16 +92,19 @@
         </table>
     </div>
     <div class="container">
-        <table width="100%" border="1">
+        <table class="table table-striped" width="100%">
             <thead>
             <tr>
-                <th>Hourly Rate</th>
-                <th>Year</th>
+                <th scope="col">#</th>
+                <th scope="col">Hourly Rate</th>
+                <th scope="col">Year</th>
+                <th scope="col">Action</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="bookingFee" items="${venue.bookingFees}">
+            <c:forEach var="bookingFee" items="${venue.bookingFees}" varStatus="status">
                 <tr>
+                    <td scope="row">${status.index+1}</td>
                     <td>${bookingFee.hourlyRate}</td>   
                     <td>${bookingFee.year}</td>
                     <td><a href="venue_update.jsp?id=${venue.id}" class="btn btn-primary">Update</a></td>
