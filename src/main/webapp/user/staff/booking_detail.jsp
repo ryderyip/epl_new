@@ -101,11 +101,17 @@
     </table>
     <br>
     <center><h4 class="offcanvas-title">Guests</h4></center>
-    <table class="table table-bordered">
+    <table class="table table-striped">
+        <tr>
+            <th width="45%">Name</th>
+            <th width="10%">&nbsp</th>
+            <th width="45%">Email</th>
+        </tr>
     <c:forEach var="guest" items="${booking.guests}">
         <tr>
-            <td width="50%">${guest.name}</td>
-            <td width="50%">${guest.email}</td>
+            <td width="45%">${guest.name}</td>
+            <td width="10%">&nbsp</td>
+            <td width="45%">${guest.email}</td>
         </tr>
 	</c:forEach>
     </table>
