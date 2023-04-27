@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
-<jsp:useBean id="booking" scope="request" class="ict.data_objects.entities.Booking" />
+<jsp:useBean id="bookings" scope="request" class="java.util.ArrayList" />
 <jsp:useBean id="BookingRequestResponse" scope="request" class="ict.data_objects.entities.BookingRequestResponse" />
 <!doctype html>
 <html lang="en">
@@ -16,6 +16,9 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
+
+
+
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="staff_frontpage.jsp">EPL Booking</a>
@@ -57,7 +60,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Booking ID</th>
+                <th>Member Name</th>
                 <th>Member Email</th>
                 <th>Status</th>
                 <th>Action</th>
@@ -66,10 +69,10 @@
         <tbody>
             <c:forEach var="booking" items="${bookings}">
                 <tr>
-                    <td>${booking.getId()}</td>
-                    <td>${booking.getBooker().getEmail()}</td>
-                    <td>${BookingRequestResponse.isApproved()}</td>
-                    <td><a href="booking_detail.jsp?id=${booking.getId()}">View Details</a></td>
+                    <td>${booking.booker.info.name}</td>
+                    <td>${booking.booker.info.email}</td>
+                    <td>${booking.statusMessage}</td>
+                    <td><a href="booking_detail.jsp?id=${booking.id}">View Details</a></td>
                 </tr>
             </c:forEach>
         </tbody>

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/booking/create"})
-public class BookingServlet extends HttpServlet {
+public class BookingCreateServlet extends HttpServlet {
     private BookingDatabase db;
 
     public void init() {

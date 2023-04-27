@@ -4,11 +4,7 @@
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
 <jsp:useBean id="booking" scope="request" class="ict.data_objects.entities.Booking" />
-<jsp:useBean id="BookingRequestResponse" scope="request" class="ict.data_objects.entities.BookingRequestResponse" />
-<jsp:useBean id="VenueUsage" scope="request" class="ict.data_objects.entities.VenueUsage" />
-<jsp:useBean id="Venue" scope="request" class="ict.data_objects.entities.Venue" />
-<jsp:useBean id="guest" scope="request" class=""/>
-<jsp:useBean id="CheckOut" scope="request" class="ict.data_objects.entities.CheckOut"/>
+<jsp:useBean id="guests" scope="request" class="java.util.ArrayList"/>
 <!doctype html>
 <html lang="en">
     <head>
@@ -61,45 +57,41 @@
     <div class="container">
     <table class="table talbe-bordered">
         <tr>
-            <td width="50%">Booking ID:</td>
-            <td width="50%">${booking.getId()}</td>
-        </tr>
-        <tr>
             <td>Booking Date:</td>
-            <td>${VenueUsage.getCheckIn()}</td>
+            <td>${booking.requestedOn}</td>
         </tr>
         <tr>
             <td>Member Email:</td>
-            <td>${booking.getBooker().getEmail()}</td>
+            <td>${booking.booker.info.email}</td>
         </tr>
         <tr>
             <td>Member Phone:</td>
-            <td>${booking.getBooker().getPhone()}</td>
-        </tr>
-        <tr>
-            <td>Booking Request Response:</td>
-            <td>${BookingRequestResponse.isApproved()}</td>
+            <td>${booking.booker.info.phone}</td>
         </tr>
         <tr>
             <td>Timeslot:</td>
-            <td>${booking.getTimeSlot()}</td>
+            <td>${booking.timeSlot}</td>
         </tr>
         <tr>
             <td>Venue Name:</td>
-            <td>${booking.getVenue()}</td>
+            <td>${booking.venue.name}</td>
         </tr>
         <tr>
             <td>Venue Location:</td>
-            <td>${Venue.location}</td>
+            <td>${booking.venue.location}</td>
         </tr>
         <tr>
             <td>Booking Approval Status:</td>
-            <td>${BookingRequestResponse.isApproved()}</td>
+            <td>${booking.statusMessage}</td>
+        </tr>
+        <tr>
+            <td>Booking Request Response:</td>
+            <td>${booking.bookingRequestResponse == null ? "-" : "TODO"}</td>
         </tr>
     </table>
     <br>
     <table class="table table-bordered">
-    <c:forEach var="guest" items="${guest}">
+    <c:forEach var="guest" items="${guests}">
         <tr>
             <td width="50%">${guest.name}</td>
             <td width="50%">${guest.email}</td>
@@ -108,13 +100,13 @@
     </table>
 
     <c:choose>
-        <c:when test="${not BookingRequestResponse.isApproved()}">
-            <form action="#" method="post">
-                <input type="hidden" name="id" value="${booking.getId()}">
+        <c:when test="${not booking.bookingRequestResponse.approved}">
+            <form action="${pageContext.request.contextPath}/booking/response?response=approve" method="post">
+                <input type="hidden" name="id" value="${booking.id}">
                 <input type="submit" value="Approve">
             </form>
-            <form action="#" method="post">
-                <input type="hidden" name="id" value="${booking.getId()}">
+            <form action="${pageContext.request.contextPath}/booking/response?response=decline" method="post">
+                <input type="hidden" name="id" value="${booking.id}">
                 <input type="submit" value="Decline">
             </form>
         </c:when>

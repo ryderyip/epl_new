@@ -14,7 +14,19 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
-    
+
+
+    <jsp:useBean id="staff" scope="request" class="ict.data_objects.entities.Staff"/>
+    <%
+        if (staff == null){
+            String id = (String) request.getAttribute("id");
+            if (id == null)
+                response.sendRedirect(request.getContextPath() + "/staff/get");
+            else
+                response.sendRedirect(request.getContextPath() + "/staff/get?id="+id);
+        }
+    %>
+
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="staff_frontpage.jsp">EPL Booking</a>

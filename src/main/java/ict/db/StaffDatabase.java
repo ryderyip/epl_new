@@ -2,6 +2,7 @@ package ict.db;
 
 import ict.data_objects.entities.Staff;
 import ict.data_objects.entities.StaffRole;
+import ict.data_objects.entities.Venue;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -28,5 +29,9 @@ public class StaffDatabase {
             throw new RuntimeException(e);
         }
         return list;
+    }
+
+    public Staff queryById(int id) {
+        return db.queryById(id, "staff");
     }
 }

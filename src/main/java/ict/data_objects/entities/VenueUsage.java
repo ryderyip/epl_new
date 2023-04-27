@@ -1,14 +1,17 @@
 package ict.data_objects.entities;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.time.Instant;
 
 public class VenueUsage {
     private int id;
     private Instant checkIn;
+    @Nullable
     private CheckOut checkOut;
     private String memberComments;
 
-    public VenueUsage(int id, Instant checkIn, CheckOut checkOut, String memberComments) {
+    public VenueUsage(int id, Instant checkIn, @Nullable CheckOut checkOut, String memberComments) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
@@ -31,11 +34,11 @@ public class VenueUsage {
         this.checkIn = checkIn;
     }
 
-    public CheckOut getCheckOut() {
+    public @Nullable CheckOut getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(CheckOut checkOut) {
+    public void setCheckOut(@Nullable CheckOut checkOut) {
         this.checkOut = checkOut;
     }
 

@@ -18,7 +18,11 @@
     <body>
 
     <jsp:useBean id="staffs" scope="request" class="java.util.ArrayList"/>
-    
+    <%
+        if (staffs == null)
+            response.sendRedirect(request.getContextPath() + "/staff/get");
+    %>
+
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="manager_frontpage.jsp">EPL Booking</a>
