@@ -9,7 +9,7 @@ public class VenueUsage {
     private Instant checkIn;
     @Nullable
     private CheckOut checkOut;
-    private String memberComments;
+    private String memberComments = "";
 
     public VenueUsage(int id, Instant checkIn, @Nullable CheckOut checkOut, String memberComments) {
         this.id = id;

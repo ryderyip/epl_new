@@ -3,7 +3,6 @@ package ict.db;
 import ict.data_objects.entities.Booking;
 import ict.data_objects.entities.Guest;
 import ict.data_objects.entities.Timeslot;
-import ict.data_objects.entities.VenueUsage;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -21,7 +20,9 @@ public class BookingDatabase {
                 new VenueDatabase().queryById(resultSet.getInt("venue_id")),
                 resultSet.getTimestamp("requested_on").toInstant(),
                 new BookingRequestResponseDatabase().queryByBookingId(resultSet.getInt("id")),
-                new VenueUsageDatabase().queryByBookingId(resultSet.getInt("id")))
+                new VenueUsageDatabase().queryByBookingId(resultSet.getInt("id")),
+                new GuestDatabase().queryByBookingId(resultSet.getInt("id"))
+            )
         );
     }
 
@@ -59,6 +60,17 @@ public class BookingDatabase {
 
     public List<Booking> queryByVenueId(int venueId) {
         return db.queryByIntColumn(TABLE_NAME, "venue_id", venueId);
+    }
+
+    public List<Booking> query() {
+        List<Booking> list;
+        try {
+            PreparedStatement s = db.getConnection().prepareStatement("SELECT * FROM booking;");
+            list = db.query(s);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return list;
     }
 }
 

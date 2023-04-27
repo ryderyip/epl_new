@@ -1,9 +1,20 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
 
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
+<%@ page import="ict.service.InstantFormatter" %>
+<%@ page import="java.time.format.FormatStyle" %>
+<%
+    if (request.getAttribute("booking") == null) {
+        String id = request.getParameter("id");
+        if (id == null) 
+            response.sendRedirect(request.getContextPath() + "/booking/get");
+        else
+            response.sendRedirect(request.getContextPath() + "/booking/get?id=" + id);
+    }
+%>
 <jsp:useBean id="booking" scope="request" class="ict.data_objects.entities.Booking" />
-<jsp:useBean id="guests" scope="request" class="java.util.ArrayList"/>
 <!doctype html>
 <html lang="en">
     <head>
@@ -56,8 +67,8 @@
     <div class="container">
     <table class="table talbe-bordered">
         <tr>
-            <td>Booking Date:</td>
-            <td>${booking.requestedOn}</td>
+            <td>Booked On:</td>
+            <td><%= InstantFormatter.format(booking.getRequestedOn(), FormatStyle.MEDIUM) %></td>
         </tr>
         <tr>
             <td>Member Email:</td>
@@ -89,8 +100,9 @@
         </tr>
     </table>
     <br>
+    <center><h4 class="offcanvas-title">Guests</h4></center>
     <table class="table table-bordered">
-    <c:forEach var="guest" items="${guests}">
+    <c:forEach var="guest" items="${booking.guests}">
         <tr>
             <td width="50%">${guest.name}</td>
             <td width="50%">${guest.email}</td>
@@ -109,24 +121,26 @@
                 <input type="submit" value="Decline">
             </form>
         </c:when>
-        <c:when test="${BookingRequestResponse.isApproved() and not bookingApproved.isPaymentConfirmed()}">
+        <c:when test="${booking.bookingRequestResponse.approved and not booking.bookingRequestResponse.approvedDetails.paymentConfirmed}">
             <p>Payment not settled yet</p>
         </c:when>
-        <c:when test="${booking.approvalStatus.isApproved() and bookingApproved.isPaymentConfirmed()}">
+        <c:when test="${booking.bookingRequestResponse.approved and booking.bookingRequestResponse.approvedDetails.paymentConfirmed}">
             <form action="" method="post">
                 <input type="hidden" name="id" value="${booking.id}">
-                <input type="submit" value="Check In" ${VenueUsage.getCheckIn() ? 'disabled' : ''}>
+                <input type="submit" value="Check In" ${booking.venueUsage != null ? 'disabled' : ''}>
             </form>
             <form action="" method="post">
                 <input type="hidden" name="id" value="${booking.id}">
-                <input type="submit" value="Check Out" ${VenueUsage.getCheckIn().getCheckOut(0) ? 'disabled' : ''}>
+                <input type="submit" value="Check Out" ${booking.venueUsage.checkOut != null ? 'disabled' : ''}>
             </form>
-            <form action="" method="post">
-                <input type="hidden" name="id" value="${booking.id}">
-                <label for="remarks">Staff Remarks:</label>
-                <input type="text" name="remarks" id="remarks">
-                <input type="submit" value="Submit">
-            </form>
+            <c:when test="${booking.venueUsage.checkOut != null}">
+                <form action="" method="post">
+                    <input type="hidden" name="id" value="${booking.id}">
+                    <label for="remarks">Staff Remarks:</label>
+                    <input type="text" name="remarks" id="remarks" value="${booking.venueUsage.checkOut.staffRemarks}">
+                    <input type="submit" value="Submit">
+                </form>
+            </c:when>
         </c:when>
     </c:choose>
     </div>
