@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
 
 <jsp:useBean id="venue" scope="request" class="ict.data_objects.entities.Venue"/>
