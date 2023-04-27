@@ -10,5 +10,5 @@ public enum StaffRole {
         this.n = shortName;
     }
 
-    public String getUrl() {return n;}
+    public String getAbbreviation() {return n;}
 }

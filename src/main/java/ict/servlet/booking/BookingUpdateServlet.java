@@ -15,12 +15,6 @@ import java.time.Year;
 
 @WebServlet(urlPatterns = {"/booking/response"})
 public class BookingUpdateServlet extends HttpServlet {
-    private BookingDatabase db;
-
-    public void init() {
-        db = new BookingDatabase();
-    }
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int bookingId = Integer.parseInt(request.getParameter("id"));
         String bookingResponse = request.getParameter("response");

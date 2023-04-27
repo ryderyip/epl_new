@@ -31,12 +31,14 @@
                     
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="manager_frontpage.jsp">Home</a>
+                            <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}/user/manager/manager_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="staff_management.jsp">Staff Management</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/manager/staff_management.jsp">Staff Management</a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>

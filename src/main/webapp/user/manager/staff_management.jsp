@@ -1,9 +1,11 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
 
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
 <%@ page import="ict.data_objects.entities.Staff" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -15,20 +17,13 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
-
-    <jsp:useBean id="staffs" scope="request" class="java.util.ArrayList"/>
-    <%
-        if (staffs == null)
-            response.sendRedirect(request.getContextPath() + "/staff/get");
-    %>
-
+    
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="manager_frontpage.jsp">EPL Booking</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/user/manager/manager_frontpage.jsp">EPL Booking</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
             
             <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
@@ -37,15 +32,16 @@
                 </div>
                 
                 <div class="offcanvas-body">
-                    
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="manager_frontpage.jsp">Home</a>
+                            <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/user/manager/manager_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="staff_management.jsp">Staff Management</a>
+                            <a class="nav-link active" href="${pageContext.request.contextPath}/user/manager/staff_management.jsp">Staff Management</a>
                         </li>
-                        
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -60,15 +56,20 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Action</th>
+                    <th scope="col">View Details</th>
                 </tr>
             </thead>
             <tbody>
+                <%
+                    if (request.getAttribute("staffs") == null)
+                        response.sendRedirect(request.getContextPath() + "/staff/get");
+                %>
+                <jsp:useBean id="staffs" scope="request" type="java.util.List<ict.data_objects.entities.Staff>" class="java.util.ArrayList"/>
                 <c:forEach var="staff" items="${staffs}" varStatus="status">
                 <tr>
                     <td scope="row">${status.index + 1}</td>
-                    <td>${staff.name}</td>
-                    <td><a href="staff_details.jsp?id=${staff.id}" class="btn btn-primary">Details</a></td>
+                    <td>${staff.info.name}</td>
+                    <td><a href="${pageContext.request.contextPath}/user/manager/staff_details.jsp?id=${staff.id}" class="btn btn-primary">Details</a></td>
                 </tr>
                 </c:forEach>
             </tbody>

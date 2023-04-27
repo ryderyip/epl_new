@@ -22,9 +22,6 @@ public class BookingApprovedDetailsDatabase {
     }
 
     public int add(BookingFee bookingFee) {
-        // todo set default paymentConfirmed false
-        // todo set payment_receipt default null
-        // todo set booking_fee field type to match type in table booking_fee
         String sql = "insert into booking_approval_details (booking_fee) values (?);";
         int id;
         try {

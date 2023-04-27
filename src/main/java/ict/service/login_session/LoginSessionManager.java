@@ -35,4 +35,9 @@ public class LoginSessionManager {
         UserType userType = UserType.fromInt(userTypeId);
         return new LoginSession(userId, userType);
     }
+
+    public void clearSession() {
+        HttpSession session = request.getSession();
+        session.invalidate();
+    }
 }

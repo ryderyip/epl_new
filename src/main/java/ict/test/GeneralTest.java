@@ -1,13 +1,10 @@
 package ict.test;
 
-import ict.data_objects.entities.Venue;
-import ict.db.VenueDatabase;
-
-import java.time.Year;
-import java.util.Date;
+import ict.db.StaffDatabase;
 
 public class GeneralTest {
     public static void main(String[] args) {
-        System.out.println(Year.now().getValue());
+        var staff = new StaffDatabase().queryById(1);
+        System.out.println(staff.getInfo());
     }
 }

@@ -1,14 +1,12 @@
 package ict.data_objects.entities;
 
 import java.io.Serializable;
-import java.sql.SQLData;
-import java.sql.SQLException;
-import java.sql.SQLInput;
-import java.sql.SQLOutput;
 
 abstract public class User implements Serializable {
     private int id;
     private UserCommonInfo info;
+
+    public User() {}
 
     public User(int id, UserCommonInfo info) {
         this.id = id;

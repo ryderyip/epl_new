@@ -1,16 +1,16 @@
 package ict.servlet;
 
-import ict.data_objects.entities.Venue;
 import ict.db.StaffDatabase;
-import ict.db.VenueDatabase;
-import jakarta.servlet.*;
-import jakarta.servlet.http.*;
-import jakarta.servlet.annotation.*;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
 @WebServlet(urlPatterns = {"/staff/get"})
-public class StaffServlet extends HttpServlet {
+public class GetStaffServlet extends HttpServlet {
     private StaffDatabase db;
 
     public void init() {
@@ -20,7 +20,7 @@ public class StaffServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String id = request.getParameter("id");
         if (id == null)
-            getAllVenues(request, response);
+            getAll(request, response);
         else
             getById(request, response, id);
     }
@@ -32,7 +32,7 @@ public class StaffServlet extends HttpServlet {
         request.getRequestDispatcher(destination).forward(request, response);
     }
 
-    private void getAllVenues(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void getAll(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var staffs = db.query();
         request.setAttribute("staffs", staffs);
         String destination = "/user/manager/staff_management.jsp";

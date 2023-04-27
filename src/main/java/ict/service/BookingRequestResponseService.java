@@ -11,14 +11,13 @@ public class BookingRequestResponseService {
     private final int bookingId;
 
     public BookingRequestResponseService(int bookingId) {
-        this.bookingFee = bookingFee;
         this.bookingId = bookingId;
-        assert bookingFee.getYear() == Year.now().getValue();
     }
 
     public void approve(@NotNull BookingFee bookingFee) {
-        var detailsid = new BookingApprovedDetailsDatabase().add(bookingFee);
-        new BookingRequestResponseDatabase().addApprove(bookingId, detailsid);
+        assert bookingFee.getYear() == Year.now().getValue();
+        var detailsId = new BookingApprovedDetailsDatabase().add(bookingFee);
+        new BookingRequestResponseDatabase().addApprove(bookingId, detailsId);
     }
 
     public void decline() {

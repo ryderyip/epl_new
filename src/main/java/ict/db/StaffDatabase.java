@@ -2,7 +2,6 @@ package ict.db;
 
 import ict.data_objects.entities.Staff;
 import ict.data_objects.entities.StaffRole;
-import ict.data_objects.entities.Venue;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -33,5 +32,18 @@ public class StaffDatabase {
 
     public Staff queryById(int id) {
         return db.queryById(id, "staff");
+    }
+
+    public void update(Staff staff) {
+        try {
+            String sql = "update staff set info_id = ?, role = ? where id = ?";
+            var s = db.getConnection().prepareStatement(sql);
+            s.setInt(1, staff.getInfo().getId());
+            s.setString(2, staff.getRole().getAbbreviation());
+            s.setInt(3, staff.getId());
+            s.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
