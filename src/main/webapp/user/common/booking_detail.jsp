@@ -19,7 +19,7 @@
 
 <jsp:useBean id="booking" scope="request" class="ict.data_objects.entities.Booking" />
 
-<center><h3 class="offcanvas-title">Booking Detail</h3></center>
+<center><h3 class="offcanvas-title">Booking Details</h3></center>
 <hr>
 <c:choose>
     <c:when test="${booking != null && booking.id != 0}">

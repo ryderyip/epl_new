@@ -44,6 +44,9 @@
                         <li class="nav-item">
                             <a class="nav-link active" href="member_management.jsp">Member Management</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
+                        </li>
                     </ul>
                 </div>
             </div>

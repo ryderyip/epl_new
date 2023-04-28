@@ -40,7 +40,6 @@
                 </div>
                 
                 <div class="offcanvas-body">
-                    
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/user/staff/staff_frontpage.jsp">Home</a>
@@ -53,6 +52,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${pageContext.request.contextPath}/user/staff/member_management.jsp">Member Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
                         </li>
                     </ul>
                 </div>

@@ -40,6 +40,9 @@
                             <a class="nav-link active" href="${pageContext.request.contextPath}/user/manager/staff_management.jsp">Staff Management</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/manager/member_management.jsp">Member Management</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
                         </li>
                     </ul>

@@ -51,7 +51,7 @@
                             Management</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="logout">Logout</a>
+                        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
                     </li>
                 </ul>
             </div>
