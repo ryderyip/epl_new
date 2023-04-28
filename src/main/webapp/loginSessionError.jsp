@@ -8,6 +8,6 @@
 <p>
     Please login again
 </p>
-<a href="login.jsp">Go login page</a>
+<a href="${pageContext.request.contextPath}/login.jsp">Go login page</a>
 </body>
 </html>

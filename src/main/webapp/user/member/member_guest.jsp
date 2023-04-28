@@ -15,7 +15,7 @@
     <body>
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid">
-            <a class="navbar-brand" href="member_frontpage.jsp">EPL Booking</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/user/member/member_frontpage.jsp">EPL Booking</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -31,13 +31,16 @@
                     
                     <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                         <li class="nav-item">
-                            <a class="nav-link" href="member_frontpage.jsp">Home</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/member/member_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/prebooking_create">Venue Booking</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/member/booking_create.jsp">Venue Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="my_booking.jsp">Booking Management</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/member/my_booking.jsp">Booking Management</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="logout">Logout</a>
                         </li>
                     </ul>
                 </div>

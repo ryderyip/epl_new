@@ -65,4 +65,15 @@ public class GuestDatabase {
     public void addMany(List<Guest> guests, int bookingId) {
         guests.forEach(guest -> add(guest, bookingId));
     }
+
+    public void removeAllByBookingId(int id) {
+        String sql = "DELETE FROM guest where booking_id = ?;";
+        try {
+            var s = db.getConnection().prepareStatement(sql);
+            s.setInt(1, id);
+            s.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

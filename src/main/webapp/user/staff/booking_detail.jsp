@@ -79,7 +79,7 @@
         </tr>
         <tr>
             <td>Timeslot:</td>
-            <td>${booking.timeSlot}</td>
+            <td>${booking.timeslot}</td>
         </tr>
         <tr>
             <td>Venue Name:</td>

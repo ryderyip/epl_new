@@ -14,12 +14,12 @@ public class CheckTimeslotAvailableService {
     public static boolean isAvailable(Timeslot timeslot, int venueId) {
         List<Booking> bookings = new BookingDatabase().queryByVenueId(venueId);
         List<Booking> sameDayBookings = bookings.stream().filter(sameDateAs(timeslot)).toList();
-        return sameDayBookings.stream().noneMatch(booking -> booking.getTimeSlot().hasOverlapWith(timeslot));
+        return sameDayBookings.stream().noneMatch(booking -> booking.getTimeslot().hasOverlapWith(timeslot));
     }
 
     @NotNull
     private static Predicate<Booking> sameDateAs(Timeslot timeslot) {
-        return booking -> LocalDateTime.ofInstant(booking.getTimeSlot().getBeginTime(), ZoneId.systemDefault()).toLocalDate().isEqual(
+        return booking -> LocalDateTime.ofInstant(booking.getTimeslot().getBeginTime(), ZoneId.systemDefault()).toLocalDate().isEqual(
                 LocalDateTime.ofInstant(timeslot.getBeginTime(), ZoneId.systemDefault()).toLocalDate()
         );
     }

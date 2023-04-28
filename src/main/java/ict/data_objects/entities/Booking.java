@@ -50,12 +50,12 @@ public class Booking implements Serializable {
         this.booker = booker;
     }
 
-    public Timeslot getTimeSlot() {
+    public Timeslot getTimeslot() {
         return timeSlot;
     }
 
-    public void setTimeSlot(Timeslot timeSlot) {
-        this.timeSlot = timeSlot;
+    public void setTimeslot(Timeslot timeslot) {
+        this.timeSlot = timeslot;
     }
 
     public Venue getVenue() {

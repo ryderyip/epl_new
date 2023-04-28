@@ -72,5 +72,11 @@ public class BookingDatabase {
         }
         return list;
     }
+
+    public void update(Booking booking) {
+        GuestDatabase guestDatabase = new GuestDatabase();
+        guestDatabase.removeAllByBookingId(booking.getId());
+        guestDatabase.addMany(booking.getGuests(), booking.getId());
+    }
 }
 

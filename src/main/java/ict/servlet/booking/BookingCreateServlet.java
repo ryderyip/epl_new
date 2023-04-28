@@ -1,7 +1,6 @@
 package ict.servlet.booking;
 
 import ict.data_objects.entities.Booking;
-import ict.data_objects.entities.Guest;
 import ict.data_objects.entities.Timeslot;
 import ict.data_objects.entities.Venue;
 import ict.db.BookingDatabase;
@@ -10,6 +9,7 @@ import ict.db.VenueDatabase;
 import ict.service.CheckTimeslotAvailableService;
 import ict.service.ErrorMessageWritingService;
 import ict.service.InstantParser;
+import ict.service.parameter_extractors.GuestsExtractor;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -18,7 +18,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.ArrayList;
 import java.util.List;
 
 @WebServlet(urlPatterns = {"/booking/create"})
@@ -44,20 +43,14 @@ public class BookingCreateServlet extends HttpServlet {
             return;
         }
 
-        String[] names = request.getParameterValues("names[]");
-        String[] emails = request.getParameterValues("emails[]");
-        if (names.length != emails.length) {
-            writeErrorMsg(response);
+        GuestsExtractor guestsExtractor = new GuestsExtractor(request, response, venue);
+        if (!guestsExtractor.isDataValid)
             return;
-        }
-        List<Guest> guests = getGuestList(names, emails);
-        if (guests.size() > venue.getCapacity()) {
-            
-        }
+        var guests = guestsExtractor.getGuestList();
         
         Booking booking = db.add(memberId, timeslot, venue.getId(), guests);
         request.setAttribute("booking", booking);
-        String destination = "/user/member/booking_details.jsp";
+        String destination = "/user/member/my_booking.jsp?id=" + booking.getId();
         request.getRequestDispatcher(destination).forward(request, response);
     }
 
@@ -78,20 +71,6 @@ public class BookingCreateServlet extends HttpServlet {
                 "The following timeslots are occupied in the venue " + venue.getName() + ":<br>" +
                 timeslots;
         ErrorMessageWritingService.write(response, title, errorMessage);
-    }
-
-    private static void writeErrorMsg(HttpServletResponse response) {
-        String title = "post parameter error";
-        String errorMessage = "names[] and emails[] have different length";
-        ErrorMessageWritingService.write(response, title, errorMessage);
-    }
-
-    private List<Guest> getGuestList(String[] names, String[] emails) {
-        assert names.length == emails.length;
-        List<Guest> guestList = new ArrayList<>();
-        for (int i = 0; i < names.length; i++)
-            guestList.add(new Guest(-1, names[i], emails[i]));
-        return guestList;
     }
 
     private Timeslot getTimeslot(HttpServletRequest request) {

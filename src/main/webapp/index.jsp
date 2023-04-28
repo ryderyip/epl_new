@@ -32,7 +32,7 @@
                             <a class="nav-link active" aria-current="page" href="index.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="login.jsp">Sign in</a>
+                            <a class="nav-link" href="/login.jsp">Sign in</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="register.jsp">Sign up</a>
