@@ -37,7 +37,7 @@
                             <a class="nav-link" href="${pageContext.request.contextPath}/user/member/booking_create.jsp">Venue Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/user/member/my_booking.jsp">Booking Management</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/member/booking_details.jsp">Booking Management</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout">Logout</a>
@@ -70,10 +70,10 @@
             <td width="20%">
                 <table border="1" width="90%">
                     <tr>
-                        <td align="center"><a href="${pageContext.request.contextPath}/user/member/member_record.jsp"><img src="${pageContext.request.contextPath}/img/record.png" width="250px" height=250px"/></a></td>
+                        <td align="center"><a href="${pageContext.request.contextPath}/user/member/booking_list.jsp"><img src="${pageContext.request.contextPath}/img/record.png" width="250px" height=250px"/></a></td>
                     </tr>
                     <tr>
-                        <td align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/user/member/member_record.jsp">Record</a></td>
+                        <td align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/user/member/booking_list.jsp">Record</a></td>
                     </tr>
                 </table>
             </td>

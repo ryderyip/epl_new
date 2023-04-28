@@ -32,7 +32,7 @@ public class MemberUpdateBookingServlet extends HttpServlet {
         booking.setGuests(guests);
         bookingDatabase.update(booking);
         
-        String destination = "/user/member/my_booking.jsp?id=" + booking.getId();
+        String destination = "/user/member/booking_details.jsp?id=" + booking.getId();
         request.getRequestDispatcher(destination).forward(request, response);
     }
 

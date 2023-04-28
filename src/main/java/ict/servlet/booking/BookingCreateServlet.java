@@ -50,7 +50,7 @@ public class BookingCreateServlet extends HttpServlet {
         
         Booking booking = db.add(memberId, timeslot, venue.getId(), guests);
         request.setAttribute("booking", booking);
-        String destination = "/user/member/my_booking.jsp?id=" + booking.getId();
+        String destination = "/user/member/booking_details.jsp?id=" + booking.getId();
         request.getRequestDispatcher(destination).forward(request, response);
     }
 

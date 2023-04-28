@@ -39,7 +39,7 @@ public class BookingRequestResponseServlet extends HttpServlet {
             responseSuccess = declineBooking(bookingId);
         if (!responseSuccess) return;
 
-        String destination = "/user/member/my_booking.jsp";
+        String destination = "/user/member/booking_details.jsp";
         request.getRequestDispatcher(destination).forward(request, response);
     }
 

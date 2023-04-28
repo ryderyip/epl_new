@@ -41,7 +41,7 @@ public class GetBookingsServlet extends HttpServlet {
         request.setAttribute("booking", booking);
         String destination = userType != UserType.MEMBER 
                 ? "/user/staff/booking_detail.jsp"
-                : "/user/member/my_booking.jsp";
+                : "/user/member/booking_details.jsp";
         request.getRequestDispatcher(destination).forward(request, response);
     }
 
@@ -50,7 +50,7 @@ public class GetBookingsServlet extends HttpServlet {
         request.setAttribute("bookings", bookings);
         String destination = userType != UserType.MEMBER 
                 ? "/user/staff/booking_list.jsp"
-                : "/user/member/member_record.jsp";
+                : "/user/member/booking_list.jsp";
         request.getRequestDispatcher(destination).forward(request, response);
     }
 

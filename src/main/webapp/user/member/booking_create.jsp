@@ -46,7 +46,7 @@
                             <a class="nav-link active" href="${pageContext.request.contextPath}/user/member/booking_create.jsp">Venue Booking</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="${pageContext.request.contextPath}/user/member/my_booking.jsp">Book Management</a>
+                            <a class="nav-link" href="${pageContext.request.contextPath}/user/member/booking_details.jsp">Book Management</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="logout">Logout</a>

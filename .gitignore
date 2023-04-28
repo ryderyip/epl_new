@@ -41,4 +41,4 @@ mvnw
 mvnw
 mvnw.cmd
 nb-configuration.xml
-src/main/webapp/user/member/my_booking.jsp
+src/main/webapp/user/member/booking_details.jsp

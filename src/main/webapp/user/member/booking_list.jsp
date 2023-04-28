@@ -47,7 +47,7 @@
                             Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="${pageContext.request.contextPath}/user/member/my_booking.jsp">Booking
+                        <a class="nav-link active" href="${pageContext.request.contextPath}/user/member/booking_details.jsp">Booking
                             Management</a>
                     </li>
                     <li class="nav-item">
@@ -83,7 +83,7 @@
                 <td>${booking.venue.name}</td>
                 <td>${booking.timeslot}</td>
                 <td>${booking.statusMessage}</td>
-                <td><a href="${pageContext.request.contextPath}/user/member/my_booking.jsp?id=${booking.id}">View Details</a></td>
+                <td><a href="${pageContext.request.contextPath}/user/member/booking_details.jsp?id=${booking.id}">View Details</a></td>
             </tr>
         </c:forEach>
         </tbody>
