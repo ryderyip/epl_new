@@ -1,23 +1,29 @@
 package ict.data_objects.entities;
 
 
+import org.jetbrains.annotations.NotNull;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
 
 public class Venue implements Serializable {
     private int id;
+    @NotNull
     private String name;
+    @NotNull
     private String location;
     private boolean available;
     private int capacity;
+    @NotNull
     private String description;
+    @NotNull
     private String type;
     private List<BookingFee> bookingFees = Collections.emptyList();
 
     public Venue() {}
 
-    public Venue(int id, String name, String location, boolean available, String description, String type, int capacity, List<BookingFee> bookingFees) {
+    public Venue(int id, @NotNull String name, @NotNull String location, boolean available, @NotNull String description, @NotNull String type, int capacity, List<BookingFee> bookingFees) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -40,7 +46,7 @@ public class Venue implements Serializable {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(@NotNull String name) {
         this.name = name;
     }
 
@@ -48,7 +54,7 @@ public class Venue implements Serializable {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(@NotNull String location) {
         this.location = location;
     }
 
@@ -64,7 +70,7 @@ public class Venue implements Serializable {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(@NotNull String description) {
         this.description = description;
     }
 
@@ -72,7 +78,7 @@ public class Venue implements Serializable {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(@NotNull String type) {
         this.type = type;
     }
 

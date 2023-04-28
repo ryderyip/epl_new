@@ -26,7 +26,8 @@ public class BookingRequestResponseServlet extends HttpServlet {
             return;
         }
 
-        if (new LoggedInUserChecker(request).checkIsLoggedInAndOfType(UserType.MEMBER)) {
+        LoggedInUserChecker checker = new LoggedInUserChecker(request);
+        if (!checker.checkIsLoggedInAndOfType(UserType.MANAGER) && !checker.checkIsLoggedInAndOfType(UserType.STAFF)) {
             ErrorMessageWritingService.write(response, "Wrong user type", "You must be a staff to execute this action");
             return;
         }

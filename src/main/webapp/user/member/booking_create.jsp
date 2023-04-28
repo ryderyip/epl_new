@@ -1,14 +1,17 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
 
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
+<%@ page import="ict.data_objects.entities.Venue" %>
+<%@ page import="java.util.List" %>
 <!doctype html>
-<jsp:useBean id="venues" scope="request" class="java.util.ArrayList"/>
 <%
     String memberId = (String)request.getAttribute("memberId");
-    if (memberId == null || venues == null)
+    if (memberId == null || request.getAttribute("venues") == null)
         response.sendRedirect(request.getContextPath() + "/prebooking_create");
 %>
+<jsp:useBean id="venues" scope="request" class="java.util.ArrayList"/>
 <html lang="en">
     <head>
       <meta charset="utf-8">
@@ -118,6 +121,9 @@
         }
         
         function removeRow(button) {
+            var table = document.getElementById("guest");
+            if (table.rows.length <= 2) return;
+            
             var row = button.parentNode.parentNode;
             row.parentNode.removeChild(row);
         }

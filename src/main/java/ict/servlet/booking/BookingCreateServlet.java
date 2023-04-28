@@ -51,6 +51,9 @@ public class BookingCreateServlet extends HttpServlet {
             return;
         }
         List<Guest> guests = getGuestList(names, emails);
+        if (guests.size() > venue.getCapacity()) {
+            
+        }
         
         Booking booking = db.add(memberId, timeslot, venue.getId(), guests);
         request.setAttribute("booking", booking);

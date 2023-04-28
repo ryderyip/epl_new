@@ -41,4 +41,30 @@ public class BookingFeeDatabase {
     public List<BookingFee> queryByVenueId(int venueId) {
         return db.queryByIntColumn(TABLE_NAME, "venue_id", venueId);
     }
+
+    private void add(int venueId, BookingFee bookingFee) {
+        try {
+            String sql = "insert into booking_fee (hourly_rate, year, venue_id) value (?,?,?);";
+            var s = db.getConnection().prepareStatement(sql);
+            s.setDouble(1, bookingFee.getHourlyRate());
+            s.setInt(2, bookingFee.getYear());
+            s.setInt(3, venueId);
+            int id = db.insertRow(s, TABLE_NAME);
+            bookingFee.setId(id);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    
+    public void addMany(int venueId, List<BookingFee> bookingFees) {
+        try {
+            String sql = "delete from booking_fee where venue_id = ?;";
+            var s = db.getConnection().prepareStatement(sql);
+            s.setInt(1, venueId);
+            s.execute();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        bookingFees.forEach(bookingFee -> add(venueId, bookingFee));
+    }
 }

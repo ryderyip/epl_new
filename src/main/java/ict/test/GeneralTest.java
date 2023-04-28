@@ -1,10 +1,10 @@
 package ict.test;
 
-import ict.db.StaffDatabase;
+import ict.db.VenueDatabase;
 
 public class GeneralTest {
     public static void main(String[] args) {
-        var staff = new StaffDatabase().queryById(1);
-        System.out.println(staff.getInfo());
+        var vs = new VenueDatabase().queryAvailableVenues();
+        vs.forEach(System.out::println);
     }
 }

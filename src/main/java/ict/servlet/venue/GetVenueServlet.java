@@ -1,4 +1,4 @@
-package ict.servlet;
+package ict.servlet.venue;
 
 import ict.data_objects.entities.Venue;
 import ict.db.VenueDatabase;

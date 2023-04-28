@@ -62,4 +62,22 @@ public class VenueDatabase {
         }
         return list;
     }
+
+    public void update(Venue venue) {
+        new BookingFeeDatabase().addMany(venue.getId(), venue.getBookingFees());
+        try {
+            String sql = "update venue set name = ?, type = ?, description = ?, location = ?, capacity = ?, available = ? where id = ?";
+            var s =  db.getConnection().prepareStatement(sql);
+            s.setString(1, venue.getName());
+            s.setString(2, venue.getType());
+            s.setString(3, venue.getDescription());
+            s.setString(4, venue.getLocation());
+            s.setInt(5, venue.getCapacity());
+            s.setBoolean(6, venue.isAvailable());
+            s.setInt(7, venue.getId());
+            s.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }
