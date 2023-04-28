@@ -69,13 +69,6 @@
 
 <hr>
 
-<c:if test="${booking.venueUsage != null}">
-    <form action="#" method="post">
-        <label for="member_comments">Member Comments:</label><br>
-        <textarea id="member_comments" name="member_comments"></textarea><br>
-        <input type="submit" value="Comments">
-    </form>
-</c:if>
 <div class="container">
     <center>
         <form action="${pageContext.request.contextPath}/booking/update/member" method="post">
@@ -86,23 +79,27 @@
                 <tr>
                     <th>Name</th>
                     <th>Email</th>
-                    <th>Action</th>
+                    <c:choose>
+                        <c:when test="${booking.bookingRequestResponse == null}">
+                            <th>Action</th>
+                        </c:when>
+                    </c:choose>
                 </tr>
                 </thead>
                 <tbody>
-                <c:forEach var="guest" items="${booking.guests}">
-                    <tr>
-                        <td><input type="text" name="names[]" class="form-control" placeholder="Name"
-                                   value="${guest.name}" required></td>
-                        <td><input type="email" name="emails[]" class="form-control" placeholder="Email"
-                                   value="${guest.email}" required></td>
-                        <td>
-                            <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
-                        </td>
-                    </tr>
-                </c:forEach>
                 <c:choose>
-                    <c:when test="${booking.bookingRequestResponse != null}">
+                    <c:when test="${booking.bookingRequestResponse == null}">
+                        <c:forEach var="guest" items="${booking.guests}">
+                            <tr>
+                                <td><input type="text" name="names[]" class="form-control" placeholder="Name"
+                                           value="${guest.name}" required></td>
+                                <td><input type="email" name="emails[]" class="form-control" placeholder="Email"
+                                           value="${guest.email}" required></td>
+                                <td>
+                                    <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
+                                </td>
+                            </tr>
+                        </c:forEach>
                         <tr>
                             <td><input type="text" name="names[]" class="form-control" placeholder="Name" required></td>
                             <td><input type="email" name="emails[]" class="form-control" placeholder="Email" required></td>
@@ -111,20 +108,48 @@
                             </td>
                         </tr>
                     </c:when>
+                    <c:when test="${booking.bookingRequestResponse != null}">
+                        <c:forEach var="guest" items="${booking.guests}">
+                            <tr>
+                                <td>${guest.name}</td>
+                                <td>${guest.email}</td>
+                                <td></td>
+                            </tr>
+                        </c:forEach>
+                    </c:when>
                 </c:choose>
                 </tbody>
             </table>
             <br><br>
             <c:choose>
-                <c:when test="${booking.bookingRequestResponse != null}">
+                <c:when test="${booking.bookingRequestResponse == null}">
                     <button type="button" class="btn btn-primary" onclick="addGuest()">Add Guest</button>
                     <hr>
                     <input type="submit" class="btn btn-primary" value="Save">
                 </c:when>
             </c:choose>
+            <c:choose>
+                <c:when test="${booking.bookingRequestResponse != null and
+                                booking.bookingRequestResponse.approved and 
+                                booking.bookingRequestResponse.approvedDetails.paymentReceipt == null}">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                        Pay
+                    </button>
+                </c:when>
+            </c:choose>
         </form>
     </center>
 </div>
+
+<c:if test="${booking.venueUsage != null}">
+    <form action="${pageContext.request.contextPath}/booking/update/member/comment" method="post">
+        <input type="hidden" name="bookingId" value="${booking.id}">
+        <label for="comment">Member Comments:</label><br>
+        <textarea name="comments" id="comment">${booking.venueUsage.memberComments}</textarea>
+        <br>
+        <input type="submit" value="Update Comment">
+    </form>
+</c:if>
 
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
      aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -136,9 +161,9 @@
             </div>
             <form method="post" action="${pageContext.request.contextPath}/booking/payment/pay">
                 <div class="modal-body">
-                    <input type="hidden" name="bookingId" value="<%=request.getAttribute("bookingId")%>">
-                    Booking Fee:<%=request.getAttribute("bookingFee")%><br>
-                    Upload:<input type="file" name="upload">
+                    <input type="hidden" name="bookingId" value="${booking.id}">
+                    Booking Fee:${booking.bookingRequestResponse.approvedDetails.bookingFee}<br>
+                    Upload:<input type="file" name="receipt" required>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

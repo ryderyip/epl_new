@@ -2,9 +2,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
 
-<%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
-<%@ page import="ict.service.InstantFormatter" %>
-<%@ page import="java.time.format.FormatStyle" %>
 <%
     if (request.getAttribute("booking") == null) {
         String id = request.getParameter("id");
@@ -100,28 +97,43 @@
         </c:when>
         <c:when test="${booking.bookingRequestResponse != null 
                         and booking.bookingRequestResponse.approved
+                        and booking.bookingRequestResponse.approvedDetails.paymentReceipt != null
                         and not booking.bookingRequestResponse.approvedDetails.paymentConfirmed}">
-            <p>Payment not settled yet</p>
+            <form action="${pageContext.request.contextPath}/booking/update/staff" method="post">
+                <input type="hidden" name="bookingId" value="${booking.id}">
+                <input type="hidden" name="action" value="confirmpay">
+                <input type="submit" value="Confirm Payment">
+            </form>
         </c:when>
         <c:when test="${booking.bookingRequestResponse != null 
                         and booking.bookingRequestResponse.approved
                         and booking.bookingRequestResponse.approvedDetails.paymentConfirmed}">
-            <form action="" method="post">
-                <input type="hidden" name="id" value="${booking.id}">
-                <input type="submit" value="Check In" ${booking.venueUsage != null ? 'disabled' : ''}>
-            </form>
-            <form action="" method="post">
-                <input type="hidden" name="id" value="${booking.id}">
-                <input type="submit" value="Check Out" ${booking.venueUsage.checkOut != null ? 'disabled' : ''}>
-            </form>
-            <c:when test="${booking.venueUsage.checkOut != null}">
-                <form action="" method="post">
-                    <input type="hidden" name="id" value="${booking.id}">
-                    <label for="remarks">Staff Remarks:</label>
-                    <input type="text" name="remarks" id="remarks" value="${booking.venueUsage.checkOut.staffRemarks}">
-                    <input type="submit" value="Submit">
-                </form>
-            </c:when>
+            <c:choose>
+                <c:when test="${booking.venueUsage == null}">
+                    <form action="${pageContext.request.contextPath}/booking/update/staff" method="post">
+                        <input type="hidden" name="bookingId" value="${booking.id}">
+                        <input type="hidden" name="action" value="checkin">
+                        <input type="submit" value="Check In">
+                    </form>
+                </c:when>
+                <c:when test="${booking.venueUsage != null && booking.venueUsage.checkOut == null}">
+                    <form action="${pageContext.request.contextPath}/booking/update/staff" method="post">
+                        <input type="hidden" name="bookingId" value="${booking.id}">
+                        <input type="hidden" name="action" value="checkout">
+                        <input type="submit" value="Check Out">
+                    </form>
+                </c:when>
+                <c:when test="${booking.venueUsage.checkOut != null}">
+                    <form action="${pageContext.request.contextPath}/booking/update/staff" method="post">
+                        <input type="hidden" name="action" value="remark">
+                        <input type="hidden" name="bookingId" value="${booking.id}">
+                        <label for="remarks">Staff Remarks:</label>
+                        <textarea name="remarks" id="remarks">${booking.venueUsage.staffRemarks}</textarea>
+                        <br>
+                        <input type="submit" value="Update">
+                    </form>
+                </c:when>
+            </c:choose>
         </c:when>
     </c:choose>
     </div>

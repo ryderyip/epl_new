@@ -8,14 +8,16 @@ public class VenueUsage {
     private int id;
     private Instant checkIn;
     @Nullable
-    private CheckOut checkOut;
-    private String memberComments = "";
+    private Instant checkOut;
+    private String memberComments;
+    private String staffRemarks;
 
-    public VenueUsage(int id, Instant checkIn, @Nullable CheckOut checkOut, String memberComments) {
+    public VenueUsage(int id, Instant checkIn, @Nullable Instant checkOut, String memberComments, String staffRemarks) {
         this.id = id;
         this.checkIn = checkIn;
         this.checkOut = checkOut;
         this.memberComments = memberComments;
+        this.staffRemarks = staffRemarks;
     }
 
     public int getId() {
@@ -34,11 +36,11 @@ public class VenueUsage {
         this.checkIn = checkIn;
     }
 
-    public @Nullable CheckOut getCheckOut() {
+    public @Nullable Instant getCheckOut() {
         return checkOut;
     }
 
-    public void setCheckOut(@Nullable CheckOut checkOut) {
+    public void setCheckOut(@Nullable Instant checkOut) {
         this.checkOut = checkOut;
     }
 
@@ -48,5 +50,13 @@ public class VenueUsage {
 
     public void setMemberComments(String memberComments) {
         this.memberComments = memberComments;
+    }
+
+    public String getStaffRemarks() {
+        return staffRemarks;
+    }
+
+    public void setStaffRemarks(String staffRemarks) {
+        this.staffRemarks = staffRemarks;
     }
 }

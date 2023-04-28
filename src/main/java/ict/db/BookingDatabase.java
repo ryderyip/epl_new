@@ -13,16 +13,19 @@ public class BookingDatabase {
     final Database<Booking> db;
 
     public BookingDatabase() {
-        db = new Database<>(resultSet -> new Booking(
-                resultSet.getInt("id"),
-                new MemberDatabase().queryById(resultSet.getInt("booker_id")),
-                new TimeSlotDatabase().queryById(resultSet.getInt("timeslot_id")),
-                new VenueDatabase().queryById(resultSet.getInt("venue_id")),
-                resultSet.getTimestamp("requested_on").toInstant(),
-                new BookingRequestResponseDatabase().queryByBookingId(resultSet.getInt("id")),
-                new VenueUsageDatabase().queryByBookingId(resultSet.getInt("id")),
-                new GuestDatabase().queryByBookingId(resultSet.getInt("id"))
-            )
+        db = new Database<>(resultSet -> {
+            int id = resultSet.getInt("id");
+            return new Booking(
+                    id,
+                    new MemberDatabase().queryById(resultSet.getInt("booker_id")),
+                    new TimeSlotDatabase().queryById(resultSet.getInt("timeslot_id")),
+                    new VenueDatabase().queryById(resultSet.getInt("venue_id")),
+                    resultSet.getTimestamp("requested_on").toInstant(),
+                    new BookingRequestResponseDatabase().queryByBookingId(id),
+                    new VenueUsageDatabase().queryByBookingId(id),
+                    new GuestDatabase().queryByBookingId(id)
+                );
+        }
         );
     }
 
@@ -77,6 +80,9 @@ public class BookingDatabase {
         GuestDatabase guestDatabase = new GuestDatabase();
         guestDatabase.removeAllByBookingId(booking.getId());
         guestDatabase.addMany(booking.getGuests(), booking.getId());
+
+        if (booking.getBookingRequestResponse() != null)
+            new BookingApprovedDetailsDatabase().update(booking.getBookingRequestResponse().getApprovedDetails());
     }
 }
 

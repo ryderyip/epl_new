@@ -71,6 +71,42 @@
                         </tr>
                     </c:when>
                 </c:choose>
+                <c:choose>
+                    <c:when test="${booking.bookingRequestResponse.approvedDetails.paymentConfirmed}" >
+                        <tr>
+                            <td>Check In:</td>
+                            <td>
+                                <%=
+                                    booking.getVenueUsage() != null
+                                            ? InstantFormatter.format(booking.getVenueUsage().getCheckIn(), FormatStyle.MEDIUM)
+                                            : "-"
+                                %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Check Out:</td>
+                            <td>
+                                <%=
+                                booking.getVenueUsage() != null && booking.getVenueUsage().getCheckOut() != null
+                                        ? InstantFormatter.format(booking.getVenueUsage().getCheckOut(), FormatStyle.MEDIUM)
+                                        : "-"
+                                %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Member Comments:</td>
+                            <td>${booking.venueUsage != null
+                                    ? booking.venueUsage.memberComments
+                                    : "-"}</td>
+                        </tr>
+                        <tr>
+                            <td>Staff Remarks:</td>
+                            <td>${booking.venueUsage != null
+                                    ? booking.venueUsage.staffRemarks
+                                    : "-"}</td>
+                        </tr>
+                    </c:when>
+                </c:choose>
             </table>
             <br>
         </div>

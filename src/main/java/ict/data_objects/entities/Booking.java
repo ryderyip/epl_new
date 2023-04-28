@@ -83,9 +83,20 @@ public class Booking implements Serializable {
     }
 
     public String getStatusMessage() {
-        return bookingRequestResponse == null
-                ? "Pending" : bookingRequestResponse.isApproved()
-                ? "Approved" : "Declined";
+        if (bookingRequestResponse == null) {
+            return "Pending";
+        } else {
+            if (bookingRequestResponse.isApproved()) {
+                BookingApprovedDetails approvedDetails = bookingRequestResponse.getApprovedDetails();
+                return approvedDetails.getPaymentReceipt() == null
+                        ? "Approved, waiting payment"
+                        : !approvedDetails.isPaymentConfirmed()
+                        ? "Approved, paid, waiting confirmation"
+                        : "Approved, paid, confirmed";
+            } else {
+                return "Declined";
+            }
+        }
     }
 
     public @Nullable VenueUsage getVenueUsage() {

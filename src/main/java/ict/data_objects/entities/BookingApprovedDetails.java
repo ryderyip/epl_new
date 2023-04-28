@@ -2,16 +2,14 @@ package ict.data_objects.entities;
 
 import org.jetbrains.annotations.Nullable;
 
-import java.math.BigDecimal;
-
 public class BookingApprovedDetails {
     private int id;
-    private BigDecimal bookingFee;
+    private double bookingFee;
     private boolean paymentConfirmed;
     @Nullable
     private String paymentReceipt;
 
-    public BookingApprovedDetails(int id, BigDecimal bookingFee, boolean paymentConfirmed, @Nullable String paymentReceipt) {
+    public BookingApprovedDetails(int id, double bookingFee, boolean paymentConfirmed, @Nullable String paymentReceipt) {
         this.id = id;
         this.bookingFee = bookingFee;
         this.paymentConfirmed = paymentConfirmed;
@@ -26,11 +24,11 @@ public class BookingApprovedDetails {
         this.id = id;
     }
 
-    public BigDecimal getBookingFee() {
+    public double getBookingFee() {
         return bookingFee;
     }
 
-    public void setBookingFee(BigDecimal bookingFee) {
+    public void setBookingFee(double bookingFee) {
         this.bookingFee = bookingFee;
     }
 
