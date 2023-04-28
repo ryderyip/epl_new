@@ -44,7 +44,8 @@ public class BookingRequestResponseServlet extends HttpServlet {
     }
 
     private boolean declineBooking(int bookingId) {
-        new BookingRequestResponseService(bookingId).decline();
+        var booking = new BookingDatabase().queryById(bookingId);
+        new BookingRequestResponseService(booking).decline();
         return true;
     }
 
@@ -55,8 +56,7 @@ public class BookingRequestResponseServlet extends HttpServlet {
             ErrorMessageWritingService.write(response, "Cannot approve booking", "Booking fee of year "+Year.now().getValue()+" for " + booking.getVenue().getName() + " has not been set.");
             return false;
         }
-
-        new BookingRequestResponseService(bookingId).approve(fee);
+        new BookingRequestResponseService(booking).approve(fee);
         return true;
     }
 

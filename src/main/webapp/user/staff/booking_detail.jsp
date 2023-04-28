@@ -63,44 +63,12 @@
     </nav><br><br><br>
     <!----End Navbar---->
 
-    <center><h3 class="offcanvas-title">Booking Detail</h3></center>
+    <jsp:include page="/user/common/booking_detail.jsp">
+        <jsp:param name="id" value="${booking.id}"/>
+    </jsp:include>
+    
     <hr>
     <div class="container">
-    <table class="table talbe-bordered">
-        <tr>
-            <td>Booked On:</td>
-            <td><%= InstantFormatter.format(booking.getRequestedOn(), FormatStyle.MEDIUM) %></td>
-        </tr>
-        <tr>
-            <td>Member Email:</td>
-            <td>${booking.booker.info.email}</td>
-        </tr>
-        <tr>
-            <td>Member Phone:</td>
-            <td>${booking.booker.info.phone}</td>
-        </tr>
-        <tr>
-            <td>Timeslot:</td>
-            <td>${booking.timeslot}</td>
-        </tr>
-        <tr>
-            <td>Venue Name:</td>
-            <td>${booking.venue.name}</td>
-        </tr>
-        <tr>
-            <td>Venue Location:</td>
-            <td>${booking.venue.location}</td>
-        </tr>
-        <tr>
-            <td>Booking Approval Status:</td>
-            <td>${booking.statusMessage}</td>
-        </tr>
-        <tr>
-            <td>Booking Request Response:</td>
-            <td>${booking.bookingRequestResponse == null ? "-" : "TODO"}</td>
-        </tr>
-    </table>
-    <br>
     <center><h4 class="offcanvas-title">Guests</h4></center>
     <table class="table table-striped">
         <tr>
@@ -118,7 +86,7 @@
     </table>
 
     <c:choose>
-        <c:when test="${not booking.bookingRequestResponse.approved}">
+        <c:when test="${booking.bookingRequestResponse == null}">
             <center>
             <form action="${pageContext.request.contextPath}/booking/response?response=approve" method="post">
                 <input type="hidden" name="id" value="${booking.id}">
@@ -130,10 +98,14 @@
             </form>
             </center>
         </c:when>
-        <c:when test="${booking.bookingRequestResponse.approved and not booking.bookingRequestResponse.approvedDetails.paymentConfirmed}">
+        <c:when test="${booking.bookingRequestResponse != null 
+                        and booking.bookingRequestResponse.approved
+                        and not booking.bookingRequestResponse.approvedDetails.paymentConfirmed}">
             <p>Payment not settled yet</p>
         </c:when>
-        <c:when test="${booking.bookingRequestResponse.approved and booking.bookingRequestResponse.approvedDetails.paymentConfirmed}">
+        <c:when test="${booking.bookingRequestResponse != null 
+                        and booking.bookingRequestResponse.approved
+                        and booking.bookingRequestResponse.approvedDetails.paymentConfirmed}">
             <form action="" method="post">
                 <input type="hidden" name="id" value="${booking.id}">
                 <input type="submit" value="Check In" ${booking.venueUsage != null ? 'disabled' : ''}>

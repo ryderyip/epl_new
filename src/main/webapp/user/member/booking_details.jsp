@@ -101,19 +101,27 @@
                         </td>
                     </tr>
                 </c:forEach>
-                <tr>
-                    <td><input type="text" name="names[]" class="form-control" placeholder="Name" required></td>
-                    <td><input type="email" name="emails[]" class="form-control" placeholder="Email" required></td>
-                    <td>
-                        <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
-                    </td>
-                </tr>
+                <c:choose>
+                    <c:when test="${booking.bookingRequestResponse != null}">
+                        <tr>
+                            <td><input type="text" name="names[]" class="form-control" placeholder="Name" required></td>
+                            <td><input type="email" name="emails[]" class="form-control" placeholder="Email" required></td>
+                            <td>
+                                <button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>
+                            </td>
+                        </tr>
+                    </c:when>
+                </c:choose>
                 </tbody>
             </table>
             <br><br>
-            <button type="button" class="btn btn-primary" onclick="addGuest()">Add Guest</button>
-            <hr>
-            <input type="submit" class="btn btn-primary" value="Save">
+            <c:choose>
+                <c:when test="${booking.bookingRequestResponse != null}">
+                    <button type="button" class="btn btn-primary" onclick="addGuest()">Add Guest</button>
+                    <hr>
+                    <input type="submit" class="btn btn-primary" value="Save">
+                </c:when>
+            </c:choose>
         </form>
     </center>
 </div>

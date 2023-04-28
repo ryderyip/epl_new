@@ -2,6 +2,7 @@ package ict.data_objects.entities;
 
 import ict.service.InstantFormatter;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.format.FormatStyle;
 
@@ -50,5 +51,9 @@ public class Timeslot {
     @Override
     public String toString() {
         return InstantFormatter.format(getBeginTime(), FormatStyle.SHORT) + " to "+ InstantFormatter.format(getEndTime(), FormatStyle.SHORT);
+    }
+    
+    public double getDurationInHours() {
+        return Duration.between(getBeginTime(), getEndTime()).toMinutes() / 60.0;
     }
 }

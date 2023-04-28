@@ -9,11 +9,14 @@ public class BookingRequestResponseDatabase {
     private final Database<BookingRequestResponse> db;
 
     public BookingRequestResponseDatabase() {
-        this.db = new Database<>(rs -> new BookingRequestResponse(
-            rs.getInt("id"),
-            new BookingApprovedDetailsDatabase().queryById(rs.getInt("details_id")),
-            rs.getBoolean("approved")
-        ));
+        this.db = new Database<>(rs -> {
+            int detailsId = rs.getInt("details_id");
+            return new BookingRequestResponse(
+                rs.getInt("id"),
+                detailsId != 0 ? new BookingApprovedDetailsDatabase().queryById(detailsId) : null,
+                rs.getBoolean("approved")
+            );
+        });
     }
 
     public BookingRequestResponse queryById(int id) {

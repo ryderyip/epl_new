@@ -23,11 +23,6 @@ public class Database<T> {
         String username = "root";
         String password = "";
         return DriverManager.getConnection(url, username, password);
-        /*MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setUser("root");
-        dataSource.setPassword("");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/ITP4511_DB");
-        return dataSource.getConnection();*/
     }
 
     public T queryById(int id, String tableName) {

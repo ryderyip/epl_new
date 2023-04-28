@@ -1,7 +1,6 @@
 package ict.db;
 
 import ict.data_objects.entities.BookingApprovedDetails;
-import ict.data_objects.entities.BookingFee;
 
 import java.sql.SQLException;
 
@@ -21,12 +20,12 @@ public class BookingApprovedDetailsDatabase {
         return db.queryById(id, "booking_approval_details");
     }
 
-    public int add(BookingFee bookingFee) {
+    public int add(double fee) {
         String sql = "insert into booking_approval_details (booking_fee) values (?);";
         int id;
         try {
             var s = db.getConnection().prepareStatement(sql);
-            s.setDouble(1, bookingFee.getHourlyRate());
+            s.setDouble(1, fee);
             id = db.insertRow(s, "booking_approval_details");
         } catch (SQLException e) {
             throw new RuntimeException(e);
