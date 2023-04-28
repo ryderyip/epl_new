@@ -56,7 +56,7 @@
             <td width="20%">
                         
             </td>
-            <td width="20%">
+            <td width="30%">
                 <table border="1" width="90%">
                     <tr>
                         <td align="center"><a href="${pageContext.request.contextPath}/user/member/booking_create.jsp"><img src="${pageContext.request.contextPath}/img/booking.png" width="250px" height=250px"/></a></td>

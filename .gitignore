@@ -36,3 +36,9 @@ build/
 
 ### Mac OS ###
 .DS_Store
+.idea/webContexts.xml
+mvnw
+mvnw
+mvnw.cmd
+nb-configuration.xml
+src/main/webapp/user/member/my_booking.jsp

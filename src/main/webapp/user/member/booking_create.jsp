@@ -64,11 +64,9 @@
     <form method="post" action="${pageContext.request.contextPath}/booking/create">
         <input type="hidden" name="memberId" value="<%=request.getAttribute("memberId")%>">
 
-
-        <label for="date">Date:</label>
-        <input type="date" name="date" id="date" required>
-        
         <div class="container">
+            <label for="date">Date:</label>
+            <input type="date" name="date" id="date" required>
             <div class="row g-3 align-items-center">
                 <label for="timeslot">Timeslot:</label>
             </div>
@@ -118,8 +116,8 @@
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
             var cell3 = row.insertCell(2);
-            cell1.innerHTML = '<input type="text" name="names[]" class="form-control new-row" placeholder="Name" required>';
-            cell2.innerHTML = '<input type="email" name="emails[]" class="form-control new-row" placeholder="Email" required>';
+            cell1.innerHTML = '<input type="text" name="name[]" class="form-control new-row" placeholder="Name" required>';
+            cell2.innerHTML = '<input type="email" name="email[]" class="form-control new-row" placeholder="Email" required>';
             cell3.innerHTML = '<button type="button" class="btn btn-danger" onclick="removeRow(this)">Remove</button>';
         }
         
