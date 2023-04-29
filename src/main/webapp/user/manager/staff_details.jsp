@@ -4,6 +4,11 @@
 
 <%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
 <%@ page import="ict.data_objects.entities.Staff" %>
+<%@ page import="java.util.List" %>
+<%@ page import="ict.data_objects.entities.VenueUsage" %>
+<%@ page import="ict.data_objects.entities.Venue" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="ict.data_objects.entities.Gender" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -15,7 +20,8 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
-
+    
+    <jsp:useBean id="venues" scope="request" class="java.util.ArrayList" type="java.util.List<ict.data_objects.entities.Venue>"/>
     <jsp:useBean id="staff" scope="request" class="ict.data_objects.entities.Staff"/>
     <%
         Object idk = request.getAttribute("staff");
@@ -65,8 +71,8 @@
     <center><h3 class="offcanvas-title">Staff Details</h3></center>
     <hr>
     <div class="container">
-        <form method="post" action="#">
-            <input type="hidden" name="id" value="${staff.id}" />
+        <form method="post" action="${pageContext.request.contextPath}/staff/update">
+            <input type="hidden" name="staffId" value="${staff.id}" />
         <p>
             <label>Username:</label>
             <input type="text" name="username" value="${staff.info.username}" class="form-control"/>
@@ -81,7 +87,17 @@
         </p>
         <p>
             <label>Gender:</label>
-            <input type="text" name="gender" value="${staff.info.gender}" class="form-control"/>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="mgender"
+                       value="male" <%=staff.getInfo() == null ? "" : staff.getInfo().getGender() == Gender.M ? "checked" : ""%> />
+                <label class="form-check-label" for="mgender">Male</label>
+            </div>
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="gender" id="fgender"
+                       value="female" <%=staff.getInfo() == null ? "" : staff.getInfo().getGender() == Gender.F ? "checked" : ""%> />
+                <label class="form-check-label" for="fgender">Female</label>
+            </div>
         </p>
         <p>
             <label>Email:</label>
@@ -90,14 +106,18 @@
         <p>
             <label>Staff Role:</label>
             <select name="staffRole" class="form-select">
-                <option value="junior" ${staff.role.abbreviation == 'J' ? 'selected' : ''}>Junior Staff</option>
-                <option value="management" ${staff.role.abbreviation == 'S' ? 'selected' : ''}>Management Staff</option> 
+                <option value="J" ${staff.role.abbreviation == 'J' ? 'selected' : ''}>Junior Staff</option>
+                <option value="S" ${staff.role.abbreviation == 'S' ? 'selected' : ''}>Management Staff</option> 
             </select>
         </p>
         
         <p>
-            <label>Venues in Charge:</label>
-            <input type="text" name="venues" value="${staff.venuesInCharge}" class="form-control"/>
+            <label for="venueInCharge">Venues in Charge:</label>
+            <select name="venues[]" id="venueInCharge"  multiple>
+                <c:forEach var="venue" items="${venues}">
+                    <option value="${venue.id}" ${staff.venuesInCharge.contains(venue) ? 'selected' : ''}>${venue.name}</option>
+                </c:forEach>
+            </select>
         </p>
         <input type="submit" value="Update" class="btn btn-primary"/>
         </form>

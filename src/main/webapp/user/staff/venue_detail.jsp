@@ -103,10 +103,10 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach var="bookingFee" items="${venue.bookingFees}" varStatus="status">
+            <c:forEach var="venue" items="${venue.bookingFees}" varStatus="status">
                 <tr>
-                    <td>${bookingFee.year}</td>
-                    <td>${bookingFee.hourlyRate}</td>   
+                    <td>${venue.year}</td>
+                    <td>${venue.hourlyRate}</td>   
                 </tr>
             </c:forEach>
             </tbody>

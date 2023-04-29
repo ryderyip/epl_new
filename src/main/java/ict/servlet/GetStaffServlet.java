@@ -1,6 +1,7 @@
 package ict.servlet;
 
 import ict.db.StaffDatabase;
+import ict.db.VenueDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -28,6 +29,8 @@ public class GetStaffServlet extends HttpServlet {
     private void getById(HttpServletRequest request, HttpServletResponse response, String id) throws ServletException, IOException {
         var staff = db.queryById(Integer.parseInt(id));
         request.setAttribute("staff", staff);
+        var venues = new VenueDatabase().query();
+        request.setAttribute("venues", venues);
         String destination = "/user/manager/staff_details.jsp";
         request.getRequestDispatcher(destination).forward(request, response);
     }

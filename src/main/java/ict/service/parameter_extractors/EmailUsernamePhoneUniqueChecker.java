@@ -7,16 +7,25 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.util.List;
 
 public class EmailUsernamePhoneUniqueChecker {
     UserCommonInfo info;
     HttpServletRequest request;
     HttpServletResponse response;
+    int infoId = -1; // need this if update
 
     public EmailUsernamePhoneUniqueChecker(UserCommonInfo info, HttpServletRequest request, HttpServletResponse response) {
         this.info = info;
         this.request = request;
         this.response = response;
+    }
+
+    public EmailUsernamePhoneUniqueChecker(UserCommonInfo info, HttpServletRequest request, HttpServletResponse response, int infoId) {
+        this.info = info;
+        this.request = request;
+        this.response = response;
+        this.infoId = infoId;
     }
 
     /**
@@ -25,15 +34,20 @@ public class EmailUsernamePhoneUniqueChecker {
     public boolean checkIsUniqueOrGoErrorPage() throws ServletException, IOException {
         var db = new UserCommonInfoDatabase();
         
-        if (db.queryByEmail(info.getEmail()) != null) {
+        System.out.println(infoId);
+        
+        List<UserCommonInfo> existingEmails = db.queryByEmail(info.getEmail());
+        if (!existingEmails.isEmpty() && existingEmails.get(0).getId() != infoId) {
             goErrorPage("Member with email " + info.getEmail() + " already exists");
             return false;
         }
-        if (db.queryByUsername(info.getUsername()) != null) {
+        List<UserCommonInfo> existingUsernames = db.queryByUsername(info.getUsername());
+        if (!existingUsernames.isEmpty() && existingUsernames.get(0).getId() != infoId) {
             goErrorPage("Member with username " + info.getUsername() + " already exists");
             return false;
         }
-        if (db.queryByPhone(info.getPhone()) != null) {
+        List<UserCommonInfo> existingPhones = db.queryByPhone(info.getPhone());
+        if (!existingPhones.isEmpty() && existingPhones.get(0).getId() != infoId) {
             goErrorPage("Member with phone " + info.getPhone() + " already exists");
             return false;
         }

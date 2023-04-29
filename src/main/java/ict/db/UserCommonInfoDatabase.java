@@ -49,4 +49,21 @@ public class UserCommonInfoDatabase implements DbInsert<UserCommonInfo> {
     public List<UserCommonInfo> queryByUsername(String username) {
         return db.queryByStringColumn(TABLE_NAME, "username", username);
     }
+
+    public void update(int infoId, UserCommonInfo info) {
+        // not gonna set password here
+        try {
+            String sql = "update user_common_info set name=?,gender=?,phone=?,email=?,username=? where id = ?;";
+            var s = db.getConnection().prepareStatement(sql);
+            s.setString(1, info.getName());
+            s.setString(2, info.getGender().getShortName());
+            s.setString(3, info.getPhone());
+            s.setString(4, info.getEmail());
+            s.setString(5, info.getUsername());
+            s.setInt(6, infoId);
+            s.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

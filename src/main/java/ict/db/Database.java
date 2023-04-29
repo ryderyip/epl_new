@@ -100,7 +100,6 @@ public class Database<T> {
             PreparedStatement s = getConnection().prepareStatement(sql);
             s.setString(1, value);
             list = query(s);
-            System.out.println(list.size());
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

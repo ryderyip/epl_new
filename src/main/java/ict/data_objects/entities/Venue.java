@@ -97,4 +97,21 @@ public class Venue implements Serializable {
     public void setBookingFees(List<BookingFee> bookingFees) {
         this.bookingFees = bookingFees;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || obj.getClass() != this.getClass())
+            return false;
+
+        final Venue other = (Venue) obj;
+        return id == other.id && name.equals(other.name);
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + this.name.hashCode();
+        hash = 53 * hash + this.id;
+        return hash;
+    }
 }

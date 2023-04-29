@@ -139,13 +139,13 @@
                 <th>Year</th>
                 <th>Hourly Rate</th>
             </tr>
-            <c:forEach var="bookingFee" items="${venue.bookingFees}" varStatus="s">
+            <c:forEach var="venue" items="${venue.bookingFees}" varStatus="s">
                 <tr>
                     <td width="30%">
-                        ${bookingFee.year}
-                        <input type="hidden" name="years[]" value="${bookingFee.year}" class="form-control" />
+                        ${venue.year}
+                        <input type="hidden" name="years[]" value="${venue.year}" class="form-control" />
                     </td>
-                    <td><input type="number" name="hourlyRates[]" value="${bookingFee.hourlyRate}" class="form-control"/></td>
+                    <td><input type="number" name="hourlyRates[]" value="${venue.hourlyRate}" class="form-control"/></td>
                 </tr>
             </c:forEach>
         </table>
