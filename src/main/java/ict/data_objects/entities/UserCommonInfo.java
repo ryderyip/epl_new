@@ -1,8 +1,9 @@
 package ict.data_objects.entities;
 
+import java.io.Serializable;
 import java.sql.*;
 
-public class UserCommonInfo implements SQLData {
+public class UserCommonInfo implements Serializable {
     private int id;
     private String name;
     private String email;
@@ -10,6 +11,8 @@ public class UserCommonInfo implements SQLData {
     private String password;
     private String phone;
     private String username;
+
+    public UserCommonInfo() {}
 
     public UserCommonInfo(int id, String name, String email, Gender gender, String password, String phone, String username) {
         this.id = id;
@@ -87,21 +90,6 @@ public class UserCommonInfo implements SQLData {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    @Override
-    public String getSQLTypeName() throws SQLException {
-        return null;
-    }
-
-    @Override
-    public void readSQL(SQLInput sqlInput, String s) throws SQLException {
-
-    }
-
-    @Override
-    public void writeSQL(SQLOutput sqlOutput) throws SQLException {
-
     }
 }
 

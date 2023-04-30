@@ -2,13 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
  pageEncoding="ISO-8859-1"%>
 
-<%@ page import="java.util.Date,java.text.SimpleDateFormat" %>
 <%@ page import="ict.data_objects.entities.Staff" %>
-<%@ page import="java.util.List" %>
-<%@ page import="ict.data_objects.entities.VenueUsage" %>
-<%@ page import="ict.data_objects.entities.Venue" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="ict.data_objects.entities.Gender" %>
 <!doctype html>
 <html lang="en">
     <head>
@@ -72,37 +66,14 @@
     <hr>
     <div class="container">
         <form method="post" action="${pageContext.request.contextPath}/staff/update">
-            <input type="hidden" name="staffId" value="${staff.id}" />
-        <p>
-            <label>Username:</label>
-            <input type="text" name="username" value="${staff.info.username}" class="form-control"/>
-        </p>
-        <p>
-            <label>Name:</label>
-            <input type="text" name="name" value="${staff.info.name}" class="form-control"/>
-        </p>
-        <p>
-            <label>Phone:</label>
-            <input type="text" name="phone" value="${staff.info.phone}" class="form-control"/>
-        </p>
-        <p>
-            <label>Gender:</label>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="mgender"
-                       value="male" <%=staff.getInfo() == null ? "" : staff.getInfo().getGender() == Gender.M ? "checked" : ""%> />
-                <label class="form-check-label" for="mgender">Male</label>
-            </div>
-
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="gender" id="fgender"
-                       value="female" <%=staff.getInfo() == null ? "" : staff.getInfo().getGender() == Gender.F ? "checked" : ""%> />
-                <label class="form-check-label" for="fgender">Female</label>
-            </div>
-        </p>
-        <p>
-            <label>Email:</label>
-            <input type="text" name="email" value="${staff.info.email}" class="form-control"/>
-        </p>
+            <input type="hidden" name="staffId" value="${staff.id}"/>
+            <jsp:include page="/user/manager/user_details_common.jsp">
+                <jsp:param name="name" value="${staff.info.name}"/>
+                <jsp:param name="email" value="${staff.info.email}"/>
+                <jsp:param name="phone" value="${staff.info.phone}"/>
+                <jsp:param name="username" value="${staff.info.username}"/>
+                <jsp:param name="gender" value="${staff.info.gender.shortName}"/>
+            </jsp:include>
         <p>
             <label>Staff Role:</label>
             <select name="staffRole" class="form-select">

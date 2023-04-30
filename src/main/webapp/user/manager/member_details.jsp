@@ -46,7 +46,7 @@
                             <a class="nav-link" aria-current="page" href="${pageContext.request.contextPath}/user/manager/manager_frontpage.jsp">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="${pageContext.request.contextPath}/user/manager/member_management.jsp">Member Management</a>
+                            <a class="nav-link active" href="${pageContext.request.contextPath}/user/manager/staff_management.jsp">Staff Management</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="${pageContext.request.contextPath}/user/manager/member_management.jsp">Member Management</a>
@@ -63,29 +63,16 @@
     <center><h3 class="offcanvas-title">Member Details</h3></center>
     <hr>
     <div class="container">
-        <form method="post" action="#">
-            <input type="hidden" name="id" value="${member.id}" />
-        <p>
-            <label>Username:</label>
-            <input type="text" name="username" value="${member.info.username}" class="form-control"/>
-        </p>
-        <p>
-            <label>Name:</label>
-            <input type="text" name="name" value="${member.info.name}" class="form-control"/>
-        </p>
-        <p>
-            <label>Phone:</label>
-            <input type="text" name="phone" value="${member.info.phone}" class="form-control"/>
-        </p>
-        <p>
-            <label>Gender:</label>
-            <input type="text" name="gender" value="${member.info.gender}" class="form-control"/>
-        </p>
-        <p>
-            <label>Email:</label>
-            <input type="text" name="email" value="${member.info.email}" class="form-control"/>
-        </p>
-        <input type="submit" value="Update" class="btn btn-primary"/>
+        <form method="post" action="${pageContext.request.contextPath}/member/update">
+            <input type="hidden" name="memberId" value="${member.id}"/>
+            <jsp:include page="/user/manager/user_details_common.jsp">
+                <jsp:param name="name" value="${member.info.name}"/>
+                <jsp:param name="email" value="${member.info.email}"/>
+                <jsp:param name="phone" value="${member.info.phone}"/>
+                <jsp:param name="username" value="${member.info.username}"/>
+                <jsp:param name="gender" value="${member.info.gender.shortName}"/>
+            </jsp:include>
+            <input type="submit" value="Update" class="btn btn-primary"/>
         </form>
     </div>
     
