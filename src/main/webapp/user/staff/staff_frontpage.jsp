@@ -59,7 +59,7 @@
             <td width="30%">
                 <table border="1" width="90%">
                     <tr>
-                        <td align="center"><a href="${pageContext.request.contextPath}/venue/get"><img src="#" width="250px" height=250px"/></a></td>
+                        <td align="center"><a href="${pageContext.request.contextPath}/venue/get"><img src="https://i.imgur.com/ADNFRfT.png" width="250px" height=250px"/></a></td>
                     </tr>
                     <tr>
                         <td align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/venue/get">Venue Management</a></td>
@@ -70,7 +70,7 @@
             <td width="30%">
                 <table border="1" width="90%">
                     <tr>
-                        <td align="center"><a href="${pageContext.request.contextPath}/user/staff/booking_list.jsp"><img src="#" width="250px" height=250px"/></a></td>
+                        <td align="center"><a href="${pageContext.request.contextPath}/user/staff/booking_list.jsp"><img src="https://i.imgur.com/NsC3QlV.png" width="250px" height=250px"/></a></td>
                     </tr>
                     <tr>
                         <td align="center"><a class="btn btn-primary" href="${pageContext.request.contextPath}/user/staff/booking_list.jsp">Booking Management</a></td>
